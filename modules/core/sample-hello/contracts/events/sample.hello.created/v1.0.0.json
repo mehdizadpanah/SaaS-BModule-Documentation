@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "sample.hello.created v1.0.0",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["event_name", "version", "timestamp", "payload"],
+  "properties": {
+    "event_name": { "type": "string", "const": "sample.hello.created" },
+    "version": { "type": "string", "const": "1.0.0" },
+    "timestamp": { "type": "string" },
+    "payload": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["message"],
+      "properties": {
+        "message": { "type": "string" }
+      }
+    }
+  }
+}

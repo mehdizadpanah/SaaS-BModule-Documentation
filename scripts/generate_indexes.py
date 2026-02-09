@@ -45,6 +45,18 @@ def copy_tree(src: Path, dst: Path) -> None:
         shutil.copy2(p, out)
 
 
+def read_module_category(module_root: Path) -> str:
+    import yaml
+
+    p = module_root / "module.yaml"
+    if not p.exists():
+        return "uncategorized"
+    data = yaml.safe_load(p.read_text(encoding="utf-8")) or {}
+    if isinstance(data, dict) and data.get("category"):
+        return str(data["category"])
+    return "uncategorized"
+
+
 def main() -> int:
     root = repo_root()
     build_docs = root / ".build" / "docs"
@@ -109,11 +121,7 @@ def main() -> int:
                 encoding="utf-8",
             )
 
-        cat_key = "uncategorized"
-        # category is in module.yaml; for now group by registry status only (category grouping will be strict in Task 4)
-        # keep placeholder using first category for MVP if exists
-        if cats and isinstance(cats[0], dict) and cats[0].get("key"):
-            cat_key = str(cats[0]["key"])
+        cat_key = read_module_category(mroot)
 
         module_nav_by_cat.setdefault(cat_key, []).append(
             {"title": entry.module_code, "path": f".build/docs/modules/{slug}/docs/index.md"}
