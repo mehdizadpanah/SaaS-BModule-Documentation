@@ -12,6 +12,8 @@ EXCLUDE_PREFIXES = (
     ".build/",
     "site/",
     "dist/",
+    ".git/",
+    ".vscode/",
     "__pycache__/",
     ".venv/",
 )
@@ -42,20 +44,40 @@ def git_changed_files() -> list[str]:
     return out
 
 
+def all_project_files(root: Path, zip_name: str) -> list[str]:
+    files: list[str] = []
+    for p in root.rglob("*"):
+        if not p.is_file():
+            continue
+        rel = p.relative_to(root).as_posix()
+        if rel == zip_name:
+            continue
+        if any(rel.startswith(prefix) for prefix in EXCLUDE_PREFIXES):
+            continue
+        files.append(rel)
+    return files
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
-    ap.add_argument("--mode", choices=["changed"], default="changed")
-    _ = ap.parse_args()
+    ap.add_argument("--mode", choices=["changed", "all"], default="changed")
+    args = ap.parse_args()
 
     root = Path(".").resolve()
     _ = datetime.now(timezone.utc)
     zip_name = f"{uuid4().hex}.zip"
     zip_path = root / zip_name
 
-    files = git_changed_files()
-    if not files:
-        print("WARN: No changed files detected via git. ZIP will not be generated.")
-        return 2
+    if args.mode == "all":
+        files = all_project_files(root, zip_name)
+        if not files:
+            print("WARN: No files detected in project. ZIP will not be generated.")
+            return 2
+    else:
+        files = git_changed_files()
+        if not files:
+            print("WARN: No changed files detected via git. ZIP will not be generated.")
+            return 2
 
     with ZipFile(zip_path, "w", compression=ZIP_DEFLATED) as z:
         for f in files:
