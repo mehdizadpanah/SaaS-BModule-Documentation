@@ -5,5 +5,7 @@ dist/
 site/
 .build/
 
+mkdocs_generated.yml
+
 *.zip
 !.gitkeep
