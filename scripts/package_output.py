@@ -14,9 +14,26 @@ EXCLUDE_PREFIXES = (
     "dist/",
     ".git/",
     ".vscode/",
-    "__pycache__/",
     ".venv/",
 )
+
+EXCLUDE_DIR_NAMES = {
+    "__pycache__",
+}
+
+EXCLUDE_SUFFIXES = (
+    ".pyc",
+)
+
+
+def should_exclude(rel_path: str) -> bool:
+    if any(rel_path.startswith(prefix) for prefix in EXCLUDE_PREFIXES):
+        return True
+    if rel_path.endswith(EXCLUDE_SUFFIXES):
+        return True
+    if any(part in EXCLUDE_DIR_NAMES for part in rel_path.split("/")):
+        return True
+    return False
 
 
 def git_changed_files() -> list[str]:
@@ -29,7 +46,7 @@ def git_changed_files() -> list[str]:
             continue
         path = line[3:].strip()
         path = path.split(" -> ")[-1].strip()  # rename support
-        if any(path.startswith(p) for p in EXCLUDE_PREFIXES):
+        if should_exclude(path):
             continue
         if Path(path).is_dir():
             continue
@@ -52,7 +69,7 @@ def all_project_files(root: Path, zip_name: str) -> list[str]:
         rel = p.relative_to(root).as_posix()
         if rel == zip_name:
             continue
-        if any(rel.startswith(prefix) for prefix in EXCLUDE_PREFIXES):
+        if should_exclude(rel):
             continue
         files.append(rel)
     return files

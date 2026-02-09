@@ -1,0 +1,14 @@
+site_name: Business Modules Docs (MDS)
+site_description: Module Docs Standard (MDS) v1
+repo_url: ""
+theme:
+  name: mkdocs
+nav:
+  - Home: README.md
+  - Standard:
+      - MDS v1: standards/MDS_v1.md
+  - Catalogs:
+      - Categories: catalogs/categories.yaml
+      - Modules Registry: catalogs/modules_registry.yaml
+  - Ideas:
+      - Inbox: ideas/inbox.md
