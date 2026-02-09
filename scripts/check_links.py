@@ -46,9 +46,6 @@ def main() -> int:
 
             # mkdocs relative file resolution
             target_path = (md.parent / target).resolve()
-            # only enforce links that point within .build/docs
-            if str(base.resolve()) not in str(target_path):
-                continue
             if not target_path.exists():
                 errors += 1
                 print(f"ERROR LINK.MISSING: {md.relative_to(base)} -> {href}")
