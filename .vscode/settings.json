@@ -1,0 +1,8 @@
+{
+  "yaml.schemas": {
+    "./standards/rules/module_manifest.schema.json": "modules/**/module.yaml"
+  },
+  "yaml.customTags": [
+    "!Ref scalar"
+  ]
+}

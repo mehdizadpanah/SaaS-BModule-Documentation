@@ -1,0 +1,81 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Module Manifest (module.yaml) - MDS v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "module_code",
+    "display_name",
+    "category",
+    "module_version",
+    "platform_compatibility",
+    "status",
+    "owner"
+  ],
+  "properties": {
+    "module_code": {
+      "type": "string",
+      "pattern": "^[a-z0-9_]+(\\.[a-z0-9_]+)*$"
+    },
+    "display_name": { "type": "string", "minLength": 1 },
+    "description": { "type": "string" },
+    "category": { "type": "string", "minLength": 1 },
+    "module_version": {
+      "type": "string",
+      "pattern": "^(0|[1-9]\\d*)\\.(0|[1-9]\\d*)\\.(0|[1-9]\\d*)(?:-[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)?(?:\\+[0-9A-Za-z-]+(?:\\.[0-9A-Za-z-]+)*)?$"
+    },
+    "platform_compatibility": { "type": "string", "minLength": 1 },
+    "status": {
+      "type": "string",
+      "enum": ["idea", "draft", "review", "approved", "live", "deprecated"]
+    },
+    "owner": { "type": "string", "minLength": 1 },
+
+    "dependencies": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "core": { "type": "string" },
+        "modules": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["module_code", "version"],
+            "properties": {
+              "module_code": {
+                "type": "string",
+                "pattern": "^[a-z0-9_]+(\\.[a-z0-9_]+)*$"
+              },
+              "version": { "type": "string", "minLength": 1 }
+            }
+          }
+        }
+      }
+    },
+
+    "events_published": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/eventRef" }
+    },
+    "events_consumed": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/eventRef" }
+    }
+  },
+  "$defs": {
+    "eventRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["name", "contract"],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-z0-9_]+(\\.[a-z0-9_]+)+$"
+        },
+        "contract": { "type": "string", "minLength": 1 },
+        "examples": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}
