@@ -31,4 +31,5 @@ For developers migrating from the legacy `v2.25` structure:
 > **Note:** New modules MUST follow MDS v1. Legacy Core docs will be migrated to this structure incrementally.
 
 ## Changelog
+
 - 1.0.0: Initial skeleton + canonical docs list + legacy mapping.

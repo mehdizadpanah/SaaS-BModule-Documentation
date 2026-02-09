@@ -2,7 +2,8 @@ from __future__ import annotations
 
 import argparse
 import subprocess
-from datetime import datetime
+from datetime import datetime, timezone
+from uuid import uuid4
 from pathlib import Path
 from zipfile import ZIP_DEFLATED, ZipFile
 
@@ -47,11 +48,9 @@ def main() -> int:
     _ = ap.parse_args()
 
     root = Path(".").resolve()
-    dist = root / "dist"
-    dist.mkdir(parents=True, exist_ok=True)
-
-    ts = datetime.utcnow().strftime("%Y%m%d_%H%M%S")
-    zip_path = dist / f"changed_{ts}.zip"
+    _ = datetime.now(timezone.utc)
+    zip_name = f"{uuid4().hex}.zip"
+    zip_path = root / zip_name
 
     files = git_changed_files()
     if not files:
