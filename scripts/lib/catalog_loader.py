@@ -11,6 +11,9 @@ import yaml
 class RegistryModule:
     module_code: str
     path: str
+    category: Optional[str] = None
+    module_version: Optional[str] = None
+    platform_compatibility: Optional[Any] = None
     status: Optional[str] = None
     owner: Optional[str] = None
 
@@ -48,10 +51,18 @@ def load_registry(root: Optional[Path] = None) -> List[RegistryModule]:
     for i, m in enumerate(mods):
         if not isinstance(m, dict):
             raise ValueError(f"registry.modules[{i}] must be a mapping")
+        category = str(m.get("category")).strip() if "category" in m else None
+        module_version = str(m.get("module_version")).strip() if "module_version" in m else None
+        platform_compatibility = m.get("platform_compatibility")
+        if isinstance(platform_compatibility, str):
+            platform_compatibility = platform_compatibility.strip()
         out.append(
             RegistryModule(
                 module_code=str(m.get("module_code", "")).strip(),
                 path=str(m.get("path", "")).strip(),
+                category=category,
+                module_version=module_version,
+                platform_compatibility=platform_compatibility,
                 status=(str(m["status"]).strip() if "status" in m else None),
                 owner=(str(m["owner"]).strip() if "owner" in m else None),
             )

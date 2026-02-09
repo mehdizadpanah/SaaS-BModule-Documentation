@@ -18,6 +18,7 @@ if str(_repo_root) not in sys.path:
     sys.path.insert(0, str(_repo_root))
 
 from scripts.lib.catalog_loader import (
+    RegistryModule,
     load_categories,
     load_registry,
     module_root_from_registry_entry,
@@ -99,6 +100,7 @@ def validate_module_manifest(
     module_root: Path,
     cats_by_key: set,
     validator: Draft202012Validator,
+    registry_entry: RegistryModule,
     findings: List[Finding],
 ) -> None:
     manifest_path = module_root / "module.yaml"
@@ -119,6 +121,24 @@ def validate_module_manifest(
     cat = manifest.get("category")
     if cat and cat not in cats_by_key:
         findings.append(Finding("error", "L3.CATEGORY_INVALID", f"category '{cat}' not found in catalogs/categories.yaml", module_code=module_code, path=str(manifest_path)))
+
+    pairs = [
+        ("module_code", registry_entry.module_code, manifest.get("module_code")),
+        ("category", registry_entry.category, manifest.get("category")),
+        ("module_version", registry_entry.module_version, manifest.get("module_version")),
+        ("platform_compatibility", registry_entry.platform_compatibility, manifest.get("platform_compatibility")),
+    ]
+    for key, reg_v, man_v in pairs:
+        if reg_v is not None and man_v is not None and str(reg_v) != str(man_v):
+            findings.append(
+                Finding(
+                    "error",
+                    "L4.REGISTRY_MANIFEST_MISMATCH",
+                    f"{key} mismatch (registry='{reg_v}' vs manifest='{man_v}')",
+                    module_code=module_code,
+                    path=str(manifest_path),
+                )
+            )
 
     def _check_rel(p: str, rule_id: str) -> None:
         abs_path = (module_root / p).resolve()
@@ -192,7 +212,7 @@ def main() -> int:
             findings.append(Finding("error", "L1.MODULE_PATH_MISSING", f"Module path not found: {entry.path}", module_code=entry.module_code))
             continue
 
-        validate_module_manifest(entry.module_code, mroot, cats_by_key, validator, findings)
+        validate_module_manifest(entry.module_code, mroot, cats_by_key, validator, entry, findings)
 
     return _emit(findings, args.json_out)
 

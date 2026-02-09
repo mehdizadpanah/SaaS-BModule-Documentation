@@ -33,3 +33,13 @@ For developers migrating from the legacy `v2.25` structure:
 ## Changelog
 
 - 1.0.0: Initial skeleton + canonical docs list + legacy mapping.
+
+## Appendix: Definition of Done (DoD) — MDS v1
+
+A repo is considered MDS-compliant when:
+- catalogs/categories.yaml + catalogs/modules_registry.yaml exist (SSoT)
+- standards/MDS_v1.md is present and guarded (version bump + changelog on change)
+- scripts/validate_docs.py passes locally and in CI
+- scripts/build_docs.sh produces mkdocs site successfully
+- A sample module exists and passes doctor + link checks
+- package_artifacts.py produces a zip containing site + exports
