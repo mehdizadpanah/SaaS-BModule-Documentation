@@ -9,6 +9,14 @@ from typing import Any, Dict, List, Optional, Tuple
 import yaml
 from jsonschema import Draft202012Validator
 
+import sys
+from pathlib import Path
+
+# Ensure repo root is on sys.path when running as: python3 scripts/doctor.py
+_repo_root = Path(__file__).resolve().parents[1]
+if str(_repo_root) not in sys.path:
+    sys.path.insert(0, str(_repo_root))
+
 from scripts.lib.catalog_loader import (
     load_categories,
     load_registry,
