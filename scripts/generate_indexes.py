@@ -1,10 +1,15 @@
 from __future__ import annotations
 
 import shutil
+import sys
 from pathlib import Path
 from typing import Dict, List
 
 import yaml
+
+_repo_root = Path(__file__).resolve().parents[1]
+if str(_repo_root) not in sys.path:
+    sys.path.insert(0, str(_repo_root))
 
 from scripts.lib.catalog_loader import load_categories, load_registry, module_root_from_registry_entry, repo_root
 
