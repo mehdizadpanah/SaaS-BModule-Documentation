@@ -7,5 +7,4 @@ site/
 
 mkdocs_generated.yml
 
-*.zip
 !.gitkeep

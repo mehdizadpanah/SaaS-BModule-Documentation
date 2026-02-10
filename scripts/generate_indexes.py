@@ -185,6 +185,7 @@ def main() -> int:
         "  - Home: README.md\n",
         "  - Standard:\n",
         "      - MDS v1: standards/MDS_v1.md\n",
+        "      - QC Standard: standards/QC.md\n",
         "  - Catalogs:\n",
         "      - Categories: catalogs/categories.yaml\n",
         "      - Modules Registry: catalogs/modules_registry.yaml\n",
