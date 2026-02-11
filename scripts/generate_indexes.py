@@ -173,7 +173,7 @@ def main() -> int:
     else:
         for m in reg:
             lines.append(f"- `{m.module_code}` ({m.status or 'n/a'}) — `{m.path}`\n")
-    modules_index.write_text("".join(lines), encoding="utf-8")
+    modules_index.write_text("".join(lines), encoding="utf-8", newline="\n")
 
     # ------------------------------------------------------------------
     # 4) Generate mkdocs_generated.yml with docs_dir + site_dir
@@ -223,7 +223,7 @@ def main() -> int:
         for it in items:
             nav_lines.append(f"          - {it['title']}: {it['path']}\n")
 
-    gen.write_text("".join(nav_lines), encoding="utf-8")
+    gen.write_text("".join(nav_lines), encoding="utf-8", newline="\n")
     print(f"Generated: {gen}")
     return 0
 
