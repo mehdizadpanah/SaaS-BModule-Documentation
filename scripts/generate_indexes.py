@@ -79,6 +79,11 @@ def main() -> int:
     if readme.exists():
         copy_file(readme, build_docs / "README.md")
 
+    # CONTRIBUTING.md -> .build/docs/CONTRIBUTING.md
+    contributing = root / "CONTRIBUTING.md"
+    if contributing.exists():
+        copy_file(contributing, build_docs / "CONTRIBUTING.md")
+
     # standards/ -> .build/docs/standards/
     copy_tree(root / "standards", build_docs / "standards")
 
@@ -183,6 +188,7 @@ def main() -> int:
         "theme:\n  name: mkdocs\n",
         "nav:\n",
         "  - Home: README.md\n",
+        "  - Contributing: CONTRIBUTING.md\n",
         "  - Standard:\n",
         "      - MDS v1: standards/MDS_v1.md\n",
         "      - QC Standard: standards/QC.md\n",
