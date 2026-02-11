@@ -1,14 +1,26 @@
+# NOTE:
+# This repo builds MkDocs from `.build/docs` and generates config via `scripts/generate_indexes.py`.
+# `mkdocs_generated.yml` is a generated artifact and is intentionally gitignored.
+# Prefer running: `bash scripts/build_docs.sh`
+
 site_name: Business Modules Docs (MDS)
 site_description: Module Docs Standard (MDS) v1
+docs_dir: .build/docs
+site_dir: site
 repo_url: ""
 theme:
   name: mkdocs
 nav:
   - Home: README.md
+  - Contributing: CONTRIBUTING.md
   - Standard:
       - MDS v1: standards/MDS_v1.md
+      - QC Standard: standards/QC.md
   - Catalogs:
       - Categories: catalogs/categories.yaml
       - Modules Registry: catalogs/modules_registry.yaml
   - Ideas:
       - Inbox: ideas/inbox.md
+  - Generated:
+      - Modules Index: modules_index.md
+  - Modules:
