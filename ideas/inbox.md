@@ -45,9 +45,9 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
   - created_at: 2026-02-11
   - notes:
 
-    - EN: Business-agnostic digital catalog (products/services) with categories, pricing, media, and availability. Includes “Channel/Presentation” configuration to control how the catalog is exposed: QR/table link, public URL for website, embedded widget, kiosk, etc. Channel settings include access mode (public/login/approved customers), template/theme (restaurant vs industrial/B2B), and link/token generation. Acts as the canonical catalog provider for Ordering and other modules.
+    - EN: Digital Catalog/Menu Builder is a presentation & curation layer only (themes, responsive layouts, channels like QR/table, public URL, embed). It does NOT own item creation. All products/services must come from the canonical registry core.products, and catalogs only select/organize/display those items.
 
-    - FA: کاتالوگ دیجیتال عمومی برای محصولات/خدمات (دسته‌بندی، قیمت، تصاویر/مدیا، در دسترس بودن). شامل مفهوم «کانال/Presentation» برای تعیین نحوه ارائه: QR روی میز، لینک عمومی برای وبسایت، ویجت قابل Embed، کیوسک و… با تنظیمات دسترسی (عمومی/لاگین/مشتری تأیید‌شده)، قالب/تم (رستورانی یا صنعتی/B2B) و تولید لینک/توکن. مرجع اصلی کاتالوگ برای ماژول سفارش و سایر ماژول‌ها.
+    - FA: دیجیتال کاتالوگ/منوساز فقط لایه‌ی نمایش و چیدمان است (قالب‌ها، ریسپانسیو، کانال‌ها مثل QR/میز، لینک عمومی، Embed) و محل ثبت کالا نیست. تمام کالا/خدمت باید از بانک مرجع core.products تامین شود و کاتالوگ فقط انتخاب/گروه‌بندی/نمایش آیتم‌ها را انجام می‌دهد.
 
 - [ ] MI-0004 | Ordering & Checkout (Context-aware)
   - candidate_module_code: commerce.ordering
@@ -78,3 +78,17 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
     - EN: Introduce a lightweight, workspace-scoped Customer entity for ordering/checkout without polluting Contacts. Supports minimal registration (phone/email, OTP verification), guest vs registered modes (per workspace/channel setting), and maintains order history linkage. Store low-trust user-entered name as display_name (not a canonical contact). Optionally link a customer to a curated Contact via nullable contact_id when admin confirms/matches. Enforce uniqueness per workspace (workspace_id+phone/email).
 
     - FA: تعریف موجودیت/ماژول «مشتری» سبک و در سطح ورک‌اسپیس برای سفارش‌گیری/پرداخت بدون آلوده‌کردن Contacts. ثبت‌نام حداقلی (موبایل/ایمیل + OTP)، حالت مهمان یا ثبت‌نام (قابل تنظیم per workspace/channel)، و اتصال تاریخچه سفارش‌ها. نام واردشده توسط کاربر به‌صورت display_name ذخیره شود (نه کانتکت مرجع). امکان لینک اختیاری به Contact تمیز از طریق contact_id (nullable) فقط پس از تأیید/Match توسط ادمین. یکتایی بر اساس workspace_id + phone/email.
+- [ ] MI-0006 | Product/Service Registry (Workspace Item Bank)
+  - candidate_module_code: core.products
+  - proposed_category: core-platform
+  - priority: P1
+  - dependencies: []
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: yes
+  - created_at: 2026-02-11
+  - notes:
+
+    - EN: Workspace-scoped canonical registry (“bank”) of products and services (items) to be reused across modules. Acts as SSoT for CRM, Accounting, Catalog/Menu design, Ordering, and future inventory/quotes. Other modules must reference items from this registry instead of defining their own product lists.
+
+    - FA: بانک/رجیستری مرجع کالا و خدمت در سطح ورک‌اسپیس برای استفاده’ی مشترک بین ماژول‌ها. مرجع واحد (SSoT) برای CRM، حسابداری، طراحی کاتالوگ/منو، سفارش’گیری و توسعه’های آینده مثل انبار/پیش’فاکتور. سایر ماژول‌ها باید به آیتم‌های این بانک ارجاع بدهند و لیست مستقل کالا نسازند.
