@@ -1,5 +1,9 @@
 # Module Docs Standard (MDS) v1
 
+Status: draft  
+Introduced in: 0.0.0  
+Last updated in: 0.0.0  
+
 Version: 1.0.0
 
 ## Canonical docs list (Module /docs/)

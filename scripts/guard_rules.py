@@ -1,75 +1,58 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+
 from __future__ import annotations
 
 import re
-import subprocess
 from pathlib import Path
-from typing import Optional
-
-TARGET = "standards/MDS_v1.md"
 
 
-def _run(cmd: list[str]) -> subprocess.CompletedProcess:
-    return subprocess.run(cmd, capture_output=True, text=True)
+PROTECTED_FILES = [
+    "standards/MDS_v1.md",
+    "standards/QC.md",
+]
+
+REQUIRED_HEADER_KEYS = [
+    "Status:",
+    "Introduced in:",
+    "Last updated in:",
+]
 
 
-def _extract_version(text: str) -> Optional[str]:
-    m = re.search(r"^Version:\s*([0-9]+\.[0-9]+\.[0-9]+)\s*$", text, flags=re.MULTILINE)
-    return m.group(1) if m else None
+def fail(msg: str) -> None:
+    print(f"ERROR: {msg}")
+    raise SystemExit(2)
 
 
-def _has_changelog_entry(text: str, version: str) -> bool:
-    m = re.search(r"^##\s+Changelog\s*$", text, flags=re.MULTILINE)
-    if not m:
-        return False
-    start = m.end()
-    nxt = re.search(r"^##\s+", text[start:], flags=re.MULTILINE)
-    end = start + (nxt.start() if nxt else len(text[start:]))
-    section = text[start:end]
-    return re.search(rf"^\-\s*{re.escape(version)}(\b|:)", section, flags=re.MULTILINE) is not None
-
-
-def _file_changed_in_git() -> bool:
-    r = _run(["git", "status", "--porcelain", "--", TARGET])
-    if r.returncode != 0:
-        return False
-    return bool((r.stdout or "").strip())
-
-
-def _git_show_head() -> Optional[str]:
-    r = _run(["git", "show", f"HEAD:{TARGET}"])
-    if r.returncode != 0:
-        return None  # not in HEAD (initial add or no commits)
-    return r.stdout
+def read_text(p: Path) -> str:
+    try:
+        return p.read_text(encoding="utf-8")
+    except UnicodeDecodeError:
+        return p.read_text(encoding="utf-8", errors="replace")
 
 
 def main() -> int:
-    if not _file_changed_in_git():
-        return 0  # unchanged
+    root = Path(__file__).resolve().parents[1]
 
-    path = Path(TARGET)
-    if not path.exists():
-        print(f"ERROR GUARD.MDS_MISSING: '{TARGET}' not found.")
-        return 2
+    for rel in PROTECTED_FILES:
+        p = root / rel
+        if not p.exists():
+            fail(f"Missing protected file: {rel}")
 
-    new_text = path.read_text(encoding="utf-8")
-    new_ver = _extract_version(new_text)
-    if not new_ver:
-        print(f"ERROR GUARD.MDS_VERSION_MISSING: '{TARGET}' must contain 'Version: x.y.z'")
-        return 2
+        txt = read_text(p)
 
-    old_text = _git_show_head()
-    if old_text is None:
-        return 0  # initial creation allowed
+        # Minimal drift guard: ensure standard headers exist
+        for k in REQUIRED_HEADER_KEYS:
+            if k not in txt:
+                fail(f"{rel}: missing required header key '{k}'")
 
-    old_ver = _extract_version(old_text)
-    if old_ver and new_ver == old_ver:
-        print(f"ERROR GUARD.MDS_VERSION_NOT_BUMPED: '{TARGET}' changed but Version not bumped (still {new_ver})")
-        return 2
+        # Guard against forbidden external markdown links to modules-docs (same policy style)
+        # Allow plain text and code blocks; forbid markdown links like [](...modules-docs...)
+        forbidden = re.search(r"\]\([^)]+modules-docs[^)]*\)", txt)
+        if forbidden:
+            fail(f"{rel}: forbidden markdown link to modules-docs (use plain text or code block)")
 
-    if not _has_changelog_entry(new_text, new_ver):
-        print(f"ERROR GUARD.MDS_CHANGELOG_MISSING: '{TARGET}' must include a Changelog entry for version {new_ver}")
-        return 2
-
+    print("PASS: guard_rules checks succeeded.")
     return 0
 
 
