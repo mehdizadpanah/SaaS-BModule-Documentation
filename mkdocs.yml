@@ -1,7 +1,10 @@
-# NOTE:
-# This repo builds MkDocs from `.build/docs` and generates config via `scripts/generate_indexes.py`.
-# `mkdocs_generated.yml` is a generated artifact and is intentionally gitignored.
-# Prefer running: `bash scripts/build_docs.sh`
+# NOTE (DEPRECATED CONFIG):
+# Do NOT build the docs with this file.
+#
+# This repo builds MkDocs from `.build/docs` and generates the real config via `scripts/generate_indexes.py`
+# into `mkdocs_generated.yml` (generated artifact, intentionally gitignored).
+#
+# Use: `bash scripts/build_docs.sh`
 
 site_name: Business Modules Docs (MDS)
 site_description: Module Docs Standard (MDS) v1
