@@ -1,0 +1,10 @@
+__pycache__/
+*.pyc
+
+dist/
+site/
+.build/
+
+mkdocs_generated.yml
+
+!.gitkeep

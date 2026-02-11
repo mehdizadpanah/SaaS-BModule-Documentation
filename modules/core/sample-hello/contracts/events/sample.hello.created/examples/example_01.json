@@ -1,0 +1,8 @@
+{
+  "event_name": "sample.hello.created",
+  "version": "1.0.0",
+  "timestamp": "2026-02-09T00:00:00Z",
+  "payload": {
+    "message": "hello"
+  }
+}
