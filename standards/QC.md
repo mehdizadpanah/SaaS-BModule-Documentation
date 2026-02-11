@@ -28,6 +28,30 @@ FAIL:
 
 ---
 
+### Gate: Release Meta Sync (README + CHANGELOG)
+
+Command:
+
+```bash
+python3 scripts/validate_release_meta.py
+```
+
+PASS:
+
+Exit code = 0
+
+README version/date == SSoT version/date
+
+CHANGELOG has a structured entry for the same version and date
+
+FAIL:
+
+Any mismatch between SSoT - README - CHANGELOG
+
+Changelog entry missing Keep-a-Changelog structure: ### Added/Changed/Fixed + at least one bullet
+
+---
+
 ### Gate 2: Doctor (MDS Compliance)
 
 Purpose: enforce MDS v1 structural and schema rules across all modules.
