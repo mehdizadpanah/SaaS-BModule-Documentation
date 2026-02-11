@@ -15,6 +15,7 @@ def main() -> int:
     # Fail-fast QC-lite gates
     run([sys.executable, "scripts/guard_rules.py"])
     run([sys.executable, "scripts/validate_release_meta.py"])
+    run([sys.executable, "scripts/validate_ideas.py"])
     run([sys.executable, "scripts/doctor.py"])
     print("PASS: validate_docs checks succeeded.")
     return 0
