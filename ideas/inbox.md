@@ -195,3 +195,20 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
     - EN: Simple customer feedback/complaints intake module with omni-channel entry points (QR from catalog/menu, public website link). Collects feedback type (suggestion/complaint/praise), message, optional attachments, and optional contact info (phone/email) with consent. Workspace can choose one-way (intake only) or two-way (reply to customer) mode; replies are sent via SaaS Channels. This module intentionally avoids workflow/SLA/assignment complexity; instead it should be able to integrate/forward records into a future CRM module for case management.
 
     - FA: ماژول ساده دریافت پیشنهادات/انتقادات/شکایات با ورودی چندکاناله (QR از کاتالوگ/منو، لینک عمومی وب‌سایت). نوع پیام (پیشنهاد/شکایت/تقدیر)، متن، فایل/عکس اختیاری و اطلاعات تماس اختیاری (موبایل/ایمیل) همراه با رضایت را ثبت می‌کند. ورک‌اسپیس می‌تواند حالت یک‌طرفه (فقط دریافت) یا دوطرفه (ارسال پاسخ) را انتخاب کند؛ پاسخ از طریق Channelهای SaaS ارسال می‌شود. این ماژول عمداً وارد SLA/Assign/Workflow نمی‌شود و باید امکان اتصال/ارسال رکوردها به ماژول CRM آینده برای مدیریت کیس را داشته باشد.
+
+- [ ] MI-0013 | Audience/Subscribers (Opt-in Club List)
+
+  - candidate_module_code: commerce.audience
+  - proposed_category: commerce
+  - priority: P2
+  - dependencies: [commerce.customers]
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - applicable_business_segments: all
+  - created_at: 2026-02-12
+  - notes:
+
+    - EN: Lightweight “club/audience” module to collect opt-in phone/email subscribers per workspace for announcements and marketing updates. Supports consent tracking (SMS/email), unsubscribe handling, basic segmentation/tags, and export/targeting via existing SaaS Channels (this module provides the audience; sending is handled by the platform channels). Designed to stay simple (not full CRM).
+
+    - FA: ماژول سبک «باشگاه مشتریان/مخاطبان» برای جمع‌آوری لیست افرادِ رضایت‌داده (موبایل/ایمیل) در سطح ورک‌اسپیس جهت اطلاع‌رسانی و اخبار. شامل ثبت رضایت (SMS/Email)، امکان لغو عضویت، سگمنت/تگ ساده، و استفاده از Channelهای SaaS برای ارسال (این ماژول فقط Audience می‌دهد؛ ارسال توسط پلتفرم انجام می‌شود). طراحی‌شده برای ساده‌ماندن و جایگزین CRM کامل نیست.
