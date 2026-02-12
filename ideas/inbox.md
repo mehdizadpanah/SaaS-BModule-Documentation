@@ -92,3 +92,16 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
     - EN: Workspace-scoped canonical registry (“bank”) of products and services (items) to be reused across modules. Acts as SSoT for CRM, Accounting, Catalog/Menu design, Ordering, and future inventory/quotes. Other modules must reference items from this registry instead of defining their own product lists.
 
     - FA: بانک/رجیستری مرجع کالا و خدمت در سطح ورک‌اسپیس برای استفاده’ی مشترک بین ماژول‌ها. مرجع واحد (SSoT) برای CRM، حسابداری، طراحی کاتالوگ/منو، سفارش’گیری و توسعه’های آینده مثل انبار/پیش’فاکتور. سایر ماژول‌ها باید به آیتم‌های این بانک ارجاع بدهند و لیست مستقل کالا نسازند.
+- [ ] MI-0007 | Digital Signage (Multi-Screen Promo Presentation)
+  - candidate_module_code: commerce.signage
+  - proposed_category: commerce
+  - priority: P2
+  - dependencies: [core.products]
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - created_at: 2026-02-11
+
+    - EN: Digital signage/promo presentation module for non-interactive, slideshow-style display (powerpoint-like). Supports playlists of slides containing static images, designed visuals, and animations. Must support multiple screens per workspace, with screen groups that run synchronized and scheduled playback (time-based campaigns, rotation, start/stop windows). Content references products/services from core.products (and optionally curated collections), but does not own item creation. Designed for cashier-area menu boards and promotional monitors.
+
+    - FA: ماژول دیجیتال ساینیج/پرزنتیشن تبلیغاتی برای نمایش غیرتعاملی و اسلایدشو‌وار (شبیه پاورپوینت). پشتیبانی از پلی‌لیست اسلایدها شامل تصاویر ثابت، طرح‌های گرافیکی، و انیمیشن. پشتیبانی از چندین مانیتور در هر ورک‌اسپیس با مفهوم گروه مانیتور (screen groups) که هماهنگ و زمان‌بندی‌شده اجرا شوند (کمپین‌های زمان‌دار، چرخش، پنجره‌های شروع/پایان). محتوا به کالا/خدمت‌های core.products (و در صورت نیاز کالکشن‌ها) ارجاع می‌دهد و مالک ایجاد آیتم نیست. مناسب مانیتورهای بالای صندوق و نمایش‌های تبلیغاتی.
