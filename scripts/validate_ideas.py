@@ -130,7 +130,7 @@ def _check_applicable_business_segments(path: Path) -> None:
                 warn(
                     f"{path.as_posix()}: {idea_id} uses applicable_business_segments=all "
                     f"with proposed_category=commerce (line {found_line}). "
-                    "Consider using a segment-specific list."
+                    "Commerce ideas should rarely be 'all'; please specify segments unless truly universal."
                 )
             continue
 

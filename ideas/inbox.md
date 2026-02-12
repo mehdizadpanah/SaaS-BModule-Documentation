@@ -59,7 +59,7 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
   - dependencies: [commerce.catalog]
   - platform_compatibility: unknown
   - target_persona: end_user
-  - applicable_business_segments: all
+  - applicable_business_segments: [restaurant, hospitality, retail, ecommerce_b2c, b2b_commerce]
   - core_dependency_risk: no
   - created_at: 2026-02-11
   - notes:
@@ -75,7 +75,7 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
   - dependencies: [commerce.ordering, core.contacts]
   - platform_compatibility: unknown
   - target_persona: end_user
-  - applicable_business_segments: all
+  - applicable_business_segments: [restaurant, hospitality, retail, ecommerce_b2c, b2b_commerce]
   - core_dependency_risk: no
   - created_at: 2026-02-11
   - notes:
@@ -105,7 +105,7 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
   - dependencies: [core.products]
   - platform_compatibility: unknown
   - target_persona: admin
-  - applicable_business_segments: all
+  - applicable_business_segments: [restaurant, hospitality, retail]
   - core_dependency_risk: no
   - created_at: 2026-02-11
 
@@ -120,7 +120,7 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
   - dependencies: [commerce.ordering]
   - platform_compatibility: unknown
   - target_persona: admin
-  - applicable_business_segments: all
+  - applicable_business_segments: [banking_finance, healthcare, government, retail, restaurant]
   - core_dependency_risk: no
   - created_at: 2026-02-11
   - notes:
@@ -136,7 +136,7 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
   - dependencies: [commerce.catalog]
   - platform_compatibility: unknown
   - target_persona: end_user
-  - applicable_business_segments: all
+  - applicable_business_segments: [restaurant, hospitality, retail, healthcare]
   - core_dependency_risk: no
   - created_at: 2026-02-12
   - notes:

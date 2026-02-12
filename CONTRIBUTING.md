@@ -41,6 +41,7 @@ Rules:
 
 - List values must be `lowercase_snake_case`.
 - Use `all` only if the idea is truly general.
+- For `proposed_category: commerce`, avoid defaulting to `all`; prefer an explicit segment list unless the idea is truly universal.
 - For older ideas where applicability is still unknown, temporarily set `all` and refine later.
 
 Examples:
