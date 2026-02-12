@@ -31,6 +31,10 @@ def fail(msg: str) -> None:
     raise SystemExit(2)
 
 
+def warn(msg: str) -> None:
+    print(f"WARN: {msg}")
+
+
 def _read_utf8(p: Path) -> str:
     return p.read_text(encoding="utf-8")
 
@@ -102,16 +106,18 @@ def _check_applicable_business_segments(path: Path) -> None:
     for i, (start, idea_id) in enumerate(headers):
         end = headers[i + 1][0] if i + 1 < len(headers) else len(lines)
         found_value: str | None = None
+        found_category: str | None = None
         found_line = start + 1
 
         for j in range(start + 1, end):
             m = FIELD_RE.match(lines[j])
             if not m:
                 continue
+            if m.group(1) == "proposed_category":
+                found_category = m.group(2).strip()
             if m.group(1) == "applicable_business_segments":
                 found_value = m.group(2).strip()
                 found_line = j + 1
-                break
 
         if found_value is None:
             fail(
@@ -120,6 +126,12 @@ def _check_applicable_business_segments(path: Path) -> None:
             )
 
         if found_value == "all":
+            if found_category == "commerce":
+                warn(
+                    f"{path.as_posix()}: {idea_id} uses applicable_business_segments=all "
+                    f"with proposed_category=commerce (line {found_line}). "
+                    "Consider using a segment-specific list."
+                )
             continue
 
         values = _parse_list_value(found_value)
