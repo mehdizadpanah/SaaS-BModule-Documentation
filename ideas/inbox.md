@@ -178,3 +178,20 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
     - EN: Guest Wi-Fi module providing controlled internet access for visitors via captive portal. Supports login methods per workspace/location: SMS/OTP, voucher/username+password, or simple form + ToS acceptance. Enforce policies: temporary validity (time-based), bandwidth limits, data quotas, device limits, schedules, and optional walled-garden. Must keep audit/reporting to answer “which phone/device was connected at date/time”, including timestamps, device MAC, assigned IP, SSID/location, and session status; retention policy configurable. Integration options: RADIUS-based auth (e.g., MikroTik User Manager / UniFi hotspot captive portal) and/or gateway API adapters. Security baseline: guest network segmentation/isolation from internal LAN. ('Aislelabs'[1])
 
     - FA: ماژول وای‌فای مهمان برای ارائه اینترنت کنترل‌شده به مراجعین از طریق Captive Portal. روش‌های ورود قابل تنظیم per workspace/location: پیامک/OTP، ووچر/یوزرنیم+پسورد، یا فرم ساده + پذیرش قوانین. اعمال Policy: اعتبار زمان‌دار، محدودیت سرعت، سقف مصرف دیتا، محدودیت تعداد دستگاه، زمان‌بندی و در صورت نیاز walled-garden. ثبت لاگ و گزارش‌گیری برای پاسخ به «در تاریخ/ساعت مشخص چه شماره/دستگاهی وصل بوده» شامل زمان‌ها، MAC، IP، SSID/لوکیشن و وضعیت سشن؛ مدت نگهداری لاگ قابل تنظیم. گزینه‌های اتصال: RADIUS (مثل MikroTik User Manager / UniFi Hotspot) و/یا آداپترهای API. خط پایه امنیتی: جداسازی شبکه مهمان از LAN داخلی. ('Aislelabs'[1])
+
+- [ ] MI-0012 | Feedback & Complaints (Intake + Optional Reply)
+
+  - candidate_module_code: commerce.feedback
+  - proposed_category: commerce
+  - priority: P2
+  - dependencies: [commerce.catalog]
+  - platform_compatibility: unknown
+  - target_persona: end_user
+  - core_dependency_risk: no
+  - applicable_business_segments: all
+  - created_at: 2026-02-12
+  - notes:
+
+    - EN: Simple customer feedback/complaints intake module with omni-channel entry points (QR from catalog/menu, public website link). Collects feedback type (suggestion/complaint/praise), message, optional attachments, and optional contact info (phone/email) with consent. Workspace can choose one-way (intake only) or two-way (reply to customer) mode; replies are sent via SaaS Channels. This module intentionally avoids workflow/SLA/assignment complexity; instead it should be able to integrate/forward records into a future CRM module for case management.
+
+    - FA: ماژول ساده دریافت پیشنهادات/انتقادات/شکایات با ورودی چندکاناله (QR از کاتالوگ/منو، لینک عمومی وب‌سایت). نوع پیام (پیشنهاد/شکایت/تقدیر)، متن، فایل/عکس اختیاری و اطلاعات تماس اختیاری (موبایل/ایمیل) همراه با رضایت را ثبت می‌کند. ورک‌اسپیس می‌تواند حالت یک‌طرفه (فقط دریافت) یا دوطرفه (ارسال پاسخ) را انتخاب کند؛ پاسخ از طریق Channelهای SaaS ارسال می‌شود. این ماژول عمداً وارد SLA/Assign/Workflow نمی‌شود و باید امکان اتصال/ارسال رکوردها به ماژول CRM آینده برای مدیریت کیس را داشته باشد.
