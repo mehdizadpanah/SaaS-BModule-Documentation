@@ -105,3 +105,18 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
     - EN: Digital signage/promo presentation module for non-interactive, slideshow-style display (powerpoint-like). Supports playlists of slides containing static images, designed visuals, and animations. Must support multiple screens per workspace, with screen groups that run synchronized and scheduled playback (time-based campaigns, rotation, start/stop windows). Content references products/services from core.products (and optionally curated collections), but does not own item creation. Designed for cashier-area menu boards and promotional monitors.
 
     - FA: ماژول دیجیتال ساینیج/پرزنتیشن تبلیغاتی برای نمایش غیرتعاملی و اسلایدشو‌وار (شبیه پاورپوینت). پشتیبانی از پلی‌لیست اسلایدها شامل تصاویر ثابت، طرح‌های گرافیکی، و انیمیشن. پشتیبانی از چندین مانیتور در هر ورک‌اسپیس با مفهوم گروه مانیتور (screen groups) که هماهنگ و زمان‌بندی‌شده اجرا شوند (کمپین‌های زمان‌دار، چرخش، پنجره‌های شروع/پایان). محتوا به کالا/خدمت‌های core.products (و در صورت نیاز کالکشن‌ها) ارجاع می‌دهد و مالک ایجاد آیتم نیست. مناسب مانیتورهای بالای صندوق و نمایش‌های تبلیغاتی.
+
+- [ ] MI-0008 | Queue Management (Ticket + Pickup, Multi-Counter, Real-time)
+  - candidate_module_code: commerce.queue
+  - proposed_category: commerce
+  - priority: P1
+  - dependencies: [commerce.ordering]
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - created_at: 2026-02-11
+  - notes:
+
+    - EN: Workspace queue/turn management system supporting multiple independent queues per workspace (units/branches) with independent numbering. Supports two main modes: (A) Ticket Queue (bank-like: customer takes a number via QR/link/kiosk) and (B) Pickup Number (restaurant-like: number exists on receipt/order and is called when ready). Per-queue configuration supports Standalone numbering, Ordering-fed numbers (from commerce.ordering), or Hybrid. Each queue supports multiple counters/desks with an operator console (Call Next/Recall/Skip/Hold/Transfer/No-show) and announces “number X → counter Y”. Provide web-based counter display (tablet/monitor) and a public waiting display with last-called history. Real-time sync via WebSockets/SignalR-like so all displays update instantly. Audio announcements must support pre-recorded audio assets (mandatory) and optionally TTS later. Queue reset policy must be configurable by workspace (daily reset vs manual/continuous).
+
+    - FA: سیستم نوبت‌دهی/صف در سطح ورک‌اسپیس با امکان چند صف مستقل برای واحدها/شعبه‌ها و شماره‌گذاری مستقل. دو حالت اصلی: (A) نوبت‌گیری واقعی مثل بانک (QR/لینک/کیوسک) و (B) شماره فیش/سفارش مثل رستوران (بدون نوبت‌گیری، اعلام هنگام آماده‌شدن). برای هر صف امکان تنظیم وجود دارد: مستقل (Standalone)، تغذیه از سفارش‌ها (Ordering-fed از commerce.ordering)، یا Hybrid. پشتیبانی از چند کانتر/باجه با پنل اپراتور (Call Next/Recall/Skip/Hold/Transfer/No-show) و اعلام «شماره X به کانتر Y». نمایشگر اختصاصی هر کانتر (تبلت/مانیتور) و نمایشگر عمومی سالن با تاریخچه شماره‌های اخیر. همگام‌سازی لحظه‌ای با WebSocket/SignalR-like برای آپدیت فوری همه نمایشگرها. اعلان صوتی با فایل‌های صوتی آماده (اجباری) و امکان TTS در آینده. سیاست ریست شماره‌ها قابل تنظیم توسط ورک‌اسپیس (روزانه یا دستی/پیوسته).
