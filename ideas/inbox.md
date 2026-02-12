@@ -120,3 +120,18 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
     - EN: Workspace queue/turn management system supporting multiple independent queues per workspace (units/branches) with independent numbering. Supports two main modes: (A) Ticket Queue (bank-like: customer takes a number via QR/link/kiosk) and (B) Pickup Number (restaurant-like: number exists on receipt/order and is called when ready). Per-queue configuration supports Standalone numbering, Ordering-fed numbers (from commerce.ordering), or Hybrid. Each queue supports multiple counters/desks with an operator console (Call Next/Recall/Skip/Hold/Transfer/No-show) and announces “number X → counter Y”. Provide web-based counter display (tablet/monitor) and a public waiting display with last-called history. Real-time sync via WebSockets/SignalR-like so all displays update instantly. Audio announcements must support pre-recorded audio assets (mandatory) and optionally TTS later. Queue reset policy must be configurable by workspace (daily reset vs manual/continuous).
 
     - FA: سیستم نوبت‌دهی/صف در سطح ورک‌اسپیس با امکان چند صف مستقل برای واحدها/شعبه‌ها و شماره‌گذاری مستقل. دو حالت اصلی: (A) نوبت‌گیری واقعی مثل بانک (QR/لینک/کیوسک) و (B) شماره فیش/سفارش مثل رستوران (بدون نوبت‌گیری، اعلام هنگام آماده‌شدن). برای هر صف امکان تنظیم وجود دارد: مستقل (Standalone)، تغذیه از سفارش‌ها (Ordering-fed از commerce.ordering)، یا Hybrid. پشتیبانی از چند کانتر/باجه با پنل اپراتور (Call Next/Recall/Skip/Hold/Transfer/No-show) و اعلام «شماره X به کانتر Y». نمایشگر اختصاصی هر کانتر (تبلت/مانیتور) و نمایشگر عمومی سالن با تاریخچه شماره‌های اخیر. همگام‌سازی لحظه‌ای با WebSocket/SignalR-like برای آپدیت فوری همه نمایشگرها. اعلان صوتی با فایل‌های صوتی آماده (اجباری) و امکان TTS در آینده. سیاست ریست شماره‌ها قابل تنظیم توسط ورک‌اسپیس (روزانه یا دستی/پیوسته).
+
+- [ ] MI-0009 | Service Requests (Staff Assist / Call for Help)
+  - candidate_module_code: commerce.service_requests
+  - proposed_category: commerce
+  - priority: P2
+  - dependencies: [commerce.catalog]
+  - platform_compatibility: unknown
+  - target_persona: end_user
+  - core_dependency_risk: no
+  - created_at: 2026-02-12
+  - notes:
+
+    - EN: Context-aware “staff assist” requests triggered by customers/visitors via QR/link (e.g., table/room/counter/fitting-room). A workspace can define request types (Help, Bill, Assistance, etc.) and route them to internal staff users (all staff are active workspace users) by role/team/group. Provide staff dashboard with real-time updates (new/accepted/resolved), assignment/accept workflow, and history/metrics (response time). Reuses existing channel/token context from commerce.catalog; does not require ordering.
+
+    - FA: ماژول «درخواست سرویس/فراخوان پرسنل» مبتنی بر کانتکست که توسط مشتری/مراجع از طریق QR/لینک (میز/اتاق/کانتر/اتاق پرو و…) ثبت می‌شود. ورک‌اسپیس می‌تواند نوع درخواست‌ها را تعریف کند (کمک، صورت‌حساب، رسیدگی، …) و آن را به Staffهای داخلی (همه Staffها کاربر فعال workspace هستند) بر اساس Role/Team/Group روت کند. داشبورد پرسنل با آپدیت لحظه‌ای (جدید/پذیرفته‌شده/حل‌شده)، جریان کاری assignment/accept و تاریخچه/متریک‌ها (زمان پاسخ) ارائه شود. از کانتکست/توکن‌های کانال در commerce.catalog استفاده می‌کند و الزاماً به سفارش‌گیری وابسته نیست.
