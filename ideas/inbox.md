@@ -108,6 +108,7 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
   - applicable_business_segments: [restaurant, hospitality, retail]
   - core_dependency_risk: no
   - created_at: 2026-02-11
+  - notes:
 
     - EN: Digital signage/promo presentation module for non-interactive, slideshow-style display (powerpoint-like). Supports playlists of slides containing static images, designed visuals, and animations. Must support multiple screens per workspace, with screen groups that run synchronized and scheduled playback (time-based campaigns, rotation, start/stop windows). Content references products/services from core.products (and optionally curated collections), but does not own item creation. Designed for cashier-area menu boards and promotional monitors.
 
