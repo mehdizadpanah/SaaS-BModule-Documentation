@@ -145,3 +145,19 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
     - EN: Context-aware “staff assist” requests triggered by customers/visitors via QR/link (e.g., table/room/counter/fitting-room). A workspace can define request types (Help, Bill, Assistance, etc.) and route them to internal staff users (all staff are active workspace users) by role/team/group. Provide staff dashboard with real-time updates (new/accepted/resolved), assignment/accept workflow, and history/metrics (response time). Reuses existing channel/token context from commerce.catalog; does not require ordering.
 
     - FA: ماژول «درخواست سرویس/فراخوان پرسنل» مبتنی بر کانتکست که توسط مشتری/مراجع از طریق QR/لینک (میز/اتاق/کانتر/اتاق پرو و…) ثبت می‌شود. ورک‌اسپیس می‌تواند نوع درخواست‌ها را تعریف کند (کمک، صورت‌حساب، رسیدگی، …) و آن را به Staffهای داخلی (همه Staffها کاربر فعال workspace هستند) بر اساس Role/Team/Group روت کند. داشبورد پرسنل با آپدیت لحظه‌ای (جدید/پذیرفته‌شده/حل‌شده)، جریان کاری assignment/accept و تاریخچه/متریک‌ها (زمان پاسخ) ارائه شود. از کانتکست/توکن‌های کانال در commerce.catalog استفاده می‌کند و الزاماً به سفارش‌گیری وابسته نیست.
+
+- [ ] MI-0010 | Appointments/Booking (Time Slots + Check-in Integration)
+  - candidate_module_code: commerce.appointments
+  - proposed_category: commerce
+  - priority: P1
+  - dependencies: [commerce.queue, commerce.customers]
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - applicable_business_segments: [healthcare, professional_services, government, banking_finance, retail]
+  - created_at: 2026-02-12
+  - notes:
+
+    - EN: Appointment scheduling module for businesses that require booking time slots (e.g., clinics/doctors, professional services, branches). Supports services + schedules + slot templates (availability rules), resource allocation (staff/provider/room), capacity per slot, and customer self-service (book/reschedule/cancel) with automated confirmations/reminders to reduce no-shows. Include waitlist/backfill (fill cancelled slots) and configurable policies (lead time, cancellation window, deposits optional later). Integrates with commerce.queue via check-in: scheduled customers can arrive and “check in” to the appropriate queue/counter; supports mixed walk-ins + appointments in the same flow.
+
+    - FA: ماژول رزرو وقت/Appointment برای بیزینس‌هایی که نیاز به ثبت تایم دارند (کلینیک/پزشک، خدمات حرفه‌ای، شعب). پشتیبانی از تعریف سرویس‌ها + زمان‌بندی + قالب اسلات‌ها (قوانین دسترسی)، تخصیص منابع (پرسنل/پرووایدر/اتاق)، ظرفیت هر اسلات، و سلف‌سرویس مشتری (رزرو/جابجایی/کنسلی) همراه با تاییدیه و Reminder خودکار برای کاهش no-show. دارای waitlist/backfill جهت پرکردن اسلات‌های خالی‌شده و سیاست‌های قابل تنظیم (حداقل زمان تا نوبت، پنجره کنسلی؛ ودیعه/Deposit در آینده اختیاری). یکپارچه با commerce.queue از طریق Check-in: مراجعه‌کننده وقت‌دار هنگام حضور وارد صف/کانتر مربوط می‌شود و امکان ترکیب Walk-in و Appointment در یک جریان فراهم می‌شود.
