@@ -161,3 +161,20 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
     - EN: Appointment scheduling module for businesses that require booking time slots (e.g., clinics/doctors, professional services, branches). Supports services + schedules + slot templates (availability rules), resource allocation (staff/provider/room), capacity per slot, and customer self-service (book/reschedule/cancel) with automated confirmations/reminders to reduce no-shows. Include waitlist/backfill (fill cancelled slots) and configurable policies (lead time, cancellation window, deposits optional later). Integrates with commerce.queue via check-in: scheduled customers can arrive and “check in” to the appropriate queue/counter; supports mixed walk-ins + appointments in the same flow.
 
     - FA: ماژول رزرو وقت/Appointment برای بیزینس‌هایی که نیاز به ثبت تایم دارند (کلینیک/پزشک، خدمات حرفه‌ای، شعب). پشتیبانی از تعریف سرویس‌ها + زمان‌بندی + قالب اسلات‌ها (قوانین دسترسی)، تخصیص منابع (پرسنل/پرووایدر/اتاق)، ظرفیت هر اسلات، و سلف‌سرویس مشتری (رزرو/جابجایی/کنسلی) همراه با تاییدیه و Reminder خودکار برای کاهش no-show. دارای waitlist/backfill جهت پرکردن اسلات‌های خالی‌شده و سیاست‌های قابل تنظیم (حداقل زمان تا نوبت، پنجره کنسلی؛ ودیعه/Deposit در آینده اختیاری). یکپارچه با commerce.queue از طریق Check-in: مراجعه‌کننده وقت‌دار هنگام حضور وارد صف/کانتر مربوط می‌شود و امکان ترکیب Walk-in و Appointment در یک جریان فراهم می‌شود.
+
+- [ ] MI-0011 | Guest Wi-Fi (Captive Portal + OTP/Voucher + Policy + Audit)
+
+  - candidate_module_code: core.guest_wifi
+  - proposed_category: core-platform
+  - priority: P2
+  - dependencies: []
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - applicable_business_segments: all
+  - created_at: 2026-02-12
+  - notes:
+
+    - EN: Guest Wi-Fi module providing controlled internet access for visitors via captive portal. Supports login methods per workspace/location: SMS/OTP, voucher/username+password, or simple form + ToS acceptance. Enforce policies: temporary validity (time-based), bandwidth limits, data quotas, device limits, schedules, and optional walled-garden. Must keep audit/reporting to answer “which phone/device was connected at date/time”, including timestamps, device MAC, assigned IP, SSID/location, and session status; retention policy configurable. Integration options: RADIUS-based auth (e.g., MikroTik User Manager / UniFi hotspot captive portal) and/or gateway API adapters. Security baseline: guest network segmentation/isolation from internal LAN. ('Aislelabs'[1])
+
+    - FA: ماژول وای‌فای مهمان برای ارائه اینترنت کنترل‌شده به مراجعین از طریق Captive Portal. روش‌های ورود قابل تنظیم per workspace/location: پیامک/OTP، ووچر/یوزرنیم+پسورد، یا فرم ساده + پذیرش قوانین. اعمال Policy: اعتبار زمان‌دار، محدودیت سرعت، سقف مصرف دیتا، محدودیت تعداد دستگاه، زمان‌بندی و در صورت نیاز walled-garden. ثبت لاگ و گزارش‌گیری برای پاسخ به «در تاریخ/ساعت مشخص چه شماره/دستگاهی وصل بوده» شامل زمان‌ها، MAC، IP، SSID/لوکیشن و وضعیت سشن؛ مدت نگهداری لاگ قابل تنظیم. گزینه‌های اتصال: RADIUS (مثل MikroTik User Manager / UniFi Hotspot) و/یا آداپترهای API. خط پایه امنیتی: جداسازی شبکه مهمان از LAN داخلی. ('Aislelabs'[1])
