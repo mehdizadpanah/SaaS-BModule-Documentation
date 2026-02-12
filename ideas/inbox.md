@@ -11,6 +11,7 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
   - dependencies: []
   - platform_compatibility: unknown
   - target_persona: end_user
+  - applicable_business_segments: all
   - core_dependency_risk: yes
   - created_at: 2026-02-11
   - notes:
@@ -26,6 +27,7 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
   - dependencies: []
   - platform_compatibility: unknown
   - target_persona: admin
+  - applicable_business_segments: all
   - core_dependency_risk: yes
   - created_at: 2026-02-11
   - notes:
@@ -41,6 +43,7 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
   - dependencies: []
   - platform_compatibility: unknown
   - target_persona: admin
+  - applicable_business_segments: all
   - core_dependency_risk: no
   - created_at: 2026-02-11
   - notes:
@@ -56,6 +59,7 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
   - dependencies: [commerce.catalog]
   - platform_compatibility: unknown
   - target_persona: end_user
+  - applicable_business_segments: all
   - core_dependency_risk: no
   - created_at: 2026-02-11
   - notes:
@@ -71,6 +75,7 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
   - dependencies: [commerce.ordering, core.contacts]
   - platform_compatibility: unknown
   - target_persona: end_user
+  - applicable_business_segments: all
   - core_dependency_risk: no
   - created_at: 2026-02-11
   - notes:
@@ -85,6 +90,7 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
   - dependencies: []
   - platform_compatibility: unknown
   - target_persona: admin
+  - applicable_business_segments: all
   - core_dependency_risk: yes
   - created_at: 2026-02-11
   - notes:
@@ -99,6 +105,7 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
   - dependencies: [core.products]
   - platform_compatibility: unknown
   - target_persona: admin
+  - applicable_business_segments: all
   - core_dependency_risk: no
   - created_at: 2026-02-11
 
@@ -113,6 +120,7 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
   - dependencies: [commerce.ordering]
   - platform_compatibility: unknown
   - target_persona: admin
+  - applicable_business_segments: all
   - core_dependency_risk: no
   - created_at: 2026-02-11
   - notes:
@@ -128,6 +136,7 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
   - dependencies: [commerce.catalog]
   - platform_compatibility: unknown
   - target_persona: end_user
+  - applicable_business_segments: all
   - core_dependency_risk: no
   - created_at: 2026-02-12
   - notes:

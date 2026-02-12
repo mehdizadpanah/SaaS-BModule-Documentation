@@ -27,6 +27,27 @@ python3 scripts/package_output.py --mode changed
 
 Idea -> Inbox -> Triage (Approval) -> Definition (MDS fit + Core risk) -> Scaffolding -> Documentation (MDS) -> Release
 
+## Idea field: applicable_business_segments
+
+Use this field to specify which business segments an idea applies to so we can correctly align with workspace `business_segment` segmentation.
+This field is required and impacts module decisions, pricing strategy, and feature activation logic.
+
+Allowed formats:
+
+- `all`
+- A non-empty list like `[restaurant, retail, b2b_manufacturing]`
+
+Rules:
+
+- List values must be `lowercase_snake_case`.
+- Use `all` only if the idea is truly general.
+- For older ideas where applicability is still unknown, temporarily set `all` and refine later.
+
+Examples:
+
+- General idea: `applicable_business_segments: all`
+- Segment-specific idea: `applicable_business_segments: [restaurant, retail]`
+
 ## Quality Gates (SSoT)
 
 See the QC standard in [standards/QC.md](standards/QC.md).
