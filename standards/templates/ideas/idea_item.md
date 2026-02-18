@@ -7,7 +7,7 @@
   - dependencies: []
   - platform_compatibility: unknown
   - target_persona: admin|end_user|...
-  - applicable_business_segments: all|[restaurant, retail, b2b_manufacturing]
+  - applicable_business_segments: all|[restaurant, retail, manufacturing]
   - core_dependency_risk: yes|no
   - created_at: YYYY-MM-DD
   - notes: ...
@@ -16,4 +16,5 @@ Rule:
 
 - `applicable_business_segments` must be either `all` or a non-empty list.
 - List items must be `lowercase_snake_case`.
+- List items must exist in the official registry at `catalogs/business_segments.yaml`.
 - Use `all` only when the idea is genuinely segment-agnostic.

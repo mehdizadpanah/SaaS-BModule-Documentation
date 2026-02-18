@@ -76,6 +76,30 @@ FAIL:
 
 ---
 
+### Gate: Ideas (Business Segments Registry)
+
+Purpose: enforce that `applicable_business_segments` uses only official registry keys.
+
+Registry:
+
+* `catalogs/business_segments.yaml` (includes both verticals and tiers; consumed as one list in ideas)
+
+Command:
+
+```bash
+python3 scripts/validate_ideas.py
+```
+
+PASS:
+
+* Exit code = 0
+
+FAIL:
+
+* Any idea uses a segment key not present in `catalogs/business_segments.yaml`
+
+---
+
 ### Gate 3: Catalog Exports
 
 Purpose: ensure registry catalogs can be exported for CI/tools.

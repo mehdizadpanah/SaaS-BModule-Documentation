@@ -1,0 +1,16 @@
+industry_vertical:
+  - restaurant
+  - hospitality
+  - retail
+  - ecommerce_b2c
+  - b2b_commerce
+  - banking_finance
+  - healthcare
+  - government
+  - professional_services
+  - manufacturing
+
+company_tier:
+  - smb
+  - mid_market
+  - enterprise

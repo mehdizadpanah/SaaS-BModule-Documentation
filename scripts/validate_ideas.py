@@ -21,6 +21,8 @@ from __future__ import annotations
 import re
 from pathlib import Path
 
+import yaml
+
 IDEA_HEADER_RE = re.compile(r"^- \[[ xX]\]\s+(MI-\d{4})\b")
 FIELD_RE = re.compile(r"^\s*-\s+([a-z0-9_]+)\s*:\s*(.*)$")
 SNAKE_CASE_RE = re.compile(r"^[a-z0-9]+(_[a-z0-9]+)*$")
@@ -168,7 +170,41 @@ def _parse_list_value(raw: str) -> list[str] | None:
     return parts
 
 
-def _check_applicable_business_segments(path: Path) -> None:
+def _load_business_segment_registry(root: Path) -> set[str]:
+    registry_path = root / "catalogs" / "business_segments.yaml"
+    if not registry_path.exists():
+        fail(f"Missing business segment registry: {registry_path.as_posix()}")
+
+    raw = yaml.safe_load(_read_utf8(registry_path))
+    if not isinstance(raw, dict):
+        fail(f"{registry_path.as_posix()}: expected a YAML mapping at top-level.")
+
+    allowed: set[str] = set()
+    for group_key in ("industry_vertical", "company_tier"):
+        group = raw.get(group_key)
+        if group is None:
+            continue
+        if not isinstance(group, list) or not all(isinstance(x, str) for x in group):
+            fail(f"{registry_path.as_posix()}: '{group_key}' must be a list of strings.")
+        allowed.update(group)
+
+    if not allowed:
+        fail(
+            f"{registry_path.as_posix()}: registry is empty; "
+            "expected keys under industry_vertical and/or company_tier."
+        )
+
+    invalid = sorted([k for k in allowed if not SNAKE_CASE_RE.fullmatch(k)])
+    if invalid:
+        fail(
+            f"{registry_path.as_posix()}: registry contains non-snake_case key(s): "
+            f"{', '.join(invalid)}"
+        )
+
+    return allowed
+
+
+def _check_applicable_business_segments(path: Path, allowed_segments: set[str]) -> None:
     lines = _read_utf8(path).splitlines()
     for start, end, idea_id in _idea_blocks(lines):
         found_value: str | None = None
@@ -226,15 +262,25 @@ def _check_applicable_business_segments(path: Path) -> None:
                 f"(line {found_line})"
             )
 
+        unknown = [seg for seg in values if seg not in allowed_segments]
+        if unknown:
+            unknown_list = ", ".join(sorted(set(unknown)))
+            fail(
+                f"{path.as_posix()}: {idea_id} applicable_business_segments contains unknown key(s): "
+                f"{unknown_list} (line {found_line}). "
+                "Allowed keys are defined in catalogs/business_segments.yaml."
+            )
+
 
 def main() -> int:
     root = Path(__file__).resolve().parents[1]
+    allowed_segments = _load_business_segment_registry(root)
 
     # Validate core idea inbox
     inbox = root / "ideas" / "inbox.md"
     if inbox.exists():
         _check_required_structure(inbox)
-        _check_applicable_business_segments(inbox)
+        _check_applicable_business_segments(inbox, allowed_segments)
 
     print("PASS: validate_ideas checks succeeded.")
     return 0
