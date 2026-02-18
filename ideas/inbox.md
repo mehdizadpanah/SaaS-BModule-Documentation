@@ -163,7 +163,6 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
     - FA: ماژول رزرو وقت/Appointment برای بیزینس‌هایی که نیاز به ثبت تایم دارند (کلینیک/پزشک، خدمات حرفه‌ای، شعب). پشتیبانی از تعریف سرویس‌ها + زمان‌بندی + قالب اسلات‌ها (قوانین دسترسی)، تخصیص منابع (پرسنل/پرووایدر/اتاق)، ظرفیت هر اسلات، و سلف‌سرویس مشتری (رزرو/جابجایی/کنسلی) همراه با تاییدیه و Reminder خودکار برای کاهش no-show. دارای waitlist/backfill جهت پرکردن اسلات‌های خالی‌شده و سیاست‌های قابل تنظیم (حداقل زمان تا نوبت، پنجره کنسلی؛ ودیعه/Deposit در آینده اختیاری). یکپارچه با commerce.queue از طریق Check-in: مراجعه‌کننده وقت‌دار هنگام حضور وارد صف/کانتر مربوط می‌شود و امکان ترکیب Walk-in و Appointment در یک جریان فراهم می‌شود.
 
 - [ ] MI-0011 | Guest Wi-Fi (Captive Portal + OTP/Voucher + Policy + Audit)
-
   - candidate_module_code: core.guest_wifi
   - proposed_category: core-platform
   - priority: P2
@@ -180,7 +179,6 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
     - FA: ماژول وای‌فای مهمان برای ارائه اینترنت کنترل‌شده به مراجعین از طریق Captive Portal. روش‌های ورود قابل تنظیم per workspace/location: پیامک/OTP، ووچر/یوزرنیم+پسورد، یا فرم ساده + پذیرش قوانین. اعمال Policy: اعتبار زمان‌دار، محدودیت سرعت، سقف مصرف دیتا، محدودیت تعداد دستگاه، زمان‌بندی و در صورت نیاز walled-garden. ثبت لاگ و گزارش‌گیری برای پاسخ به «در تاریخ/ساعت مشخص چه شماره/دستگاهی وصل بوده» شامل زمان‌ها، MAC، IP، SSID/لوکیشن و وضعیت سشن؛ مدت نگهداری لاگ قابل تنظیم. گزینه‌های اتصال: RADIUS (مثل MikroTik User Manager / UniFi Hotspot) و/یا آداپترهای API. خط پایه امنیتی: جداسازی شبکه مهمان از LAN داخلی. ('Aislelabs'[1])
 
 - [ ] MI-0012 | Feedback & Complaints (Intake + Optional Reply)
-
   - candidate_module_code: commerce.feedback
   - proposed_category: commerce
   - priority: P2
@@ -197,7 +195,6 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
     - FA: ماژول ساده دریافت پیشنهادات/انتقادات/شکایات با ورودی چندکاناله (QR از کاتالوگ/منو، لینک عمومی وب‌سایت). نوع پیام (پیشنهاد/شکایت/تقدیر)، متن، فایل/عکس اختیاری و اطلاعات تماس اختیاری (موبایل/ایمیل) همراه با رضایت را ثبت می‌کند. ورک‌اسپیس می‌تواند حالت یک‌طرفه (فقط دریافت) یا دوطرفه (ارسال پاسخ) را انتخاب کند؛ پاسخ از طریق Channelهای SaaS ارسال می‌شود. این ماژول عمداً وارد SLA/Assign/Workflow نمی‌شود و باید امکان اتصال/ارسال رکوردها به ماژول CRM آینده برای مدیریت کیس را داشته باشد.
 
 - [ ] MI-0013 | Audience/Subscribers (Opt-in Club List)
-
   - candidate_module_code: commerce.audience
   - proposed_category: commerce
   - priority: P2
@@ -212,3 +209,19 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
     - EN: Lightweight “club/audience” module to collect opt-in phone/email subscribers per workspace for announcements and marketing updates. Supports consent tracking (SMS/email), unsubscribe handling, basic segmentation/tags, and export/targeting via existing SaaS Channels (this module provides the audience; sending is handled by the platform channels). Designed to stay simple (not full CRM).
 
     - FA: ماژول سبک «باشگاه مشتریان/مخاطبان» برای جمع‌آوری لیست افرادِ رضایت‌داده (موبایل/ایمیل) در سطح ورک‌اسپیس جهت اطلاع‌رسانی و اخبار. شامل ثبت رضایت (SMS/Email)، امکان لغو عضویت، سگمنت/تگ ساده، و استفاده از Channelهای SaaS برای ارسال (این ماژول فقط Audience می‌دهد؛ ارسال توسط پلتفرم انجام می‌شود). طراحی‌شده برای ساده‌ماندن و جایگزین CRM کامل نیست.
+
+- [ ] MI-0014 | Basic Accounting (Standard COA, Locked by User)
+  - candidate_module_code: finance.accounting_basic
+  - proposed_category: finance
+  - priority: P1
+  - dependencies: []
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - applicable_business_segments: all
+  - created_at: 2026-02-12
+  - notes:
+
+    - EN: Lightweight accounting module based on General Ledger + double-entry journal posting. Uses a standard, system-provided Chart of Accounts (COA) that is NOT editable by the workspace (locked). Must still expose stable account identifiers so other modules can post accounting entries via SaaS Channels/Integration mechanisms. Sales/Inventory/Fixed Assets/Budgeting are explicitly out of scope and handled by separate modules; this module only records GL postings and provides basic financial reports. Data model must be upgrade-safe so a workspace can later enable Advanced Accounting without losing historical entries (journal lines reference account IDs, not mutable codes/names).
+
+    - FA: ماژول حسابداری سبک مبتنی بر دفترکل (GL) و ثبت‌های دوطرفه. از چارت حساب‌های استاندارد و از پیش‌تعریف‌شده استفاده می‌کند که توسط ورک‌اسپیس قابل ویرایش نیست (Locked). با این حال باید شناسه‌های پایدار حساب‌ها را ارائه دهد تا سایر ماژول‌ها بتوانند از طریق مکانیزم Channel/Integration پلتفرم، سند/آرتیکل مالی ثبت کنند. فروش/انبار/دارایی ثابت/بودجه خارج از دامنه این ماژول هستند و ماژول جدا دارند؛ این ماژول فقط ثبت‌های GL و گزارش‌های پایه مالی را پوشش می‌دهد. دیتامدل باید طوری باشد که ارتقاء به حسابداری پیشرفته بدون از دست رفتن سوابق ممکن باشد (ارجاع آرتیکل‌ها به account_id پایدار).
