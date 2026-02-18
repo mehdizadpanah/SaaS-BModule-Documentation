@@ -225,3 +225,19 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
     - EN: Lightweight accounting module based on General Ledger + double-entry journal posting. Uses a standard, system-provided Chart of Accounts (COA) that is NOT editable by the workspace (locked). Must still expose stable account identifiers so other modules can post accounting entries via SaaS Channels/Integration mechanisms. Sales/Inventory/Fixed Assets/Budgeting are explicitly out of scope and handled by separate modules; this module only records GL postings and provides basic financial reports. Data model must be upgrade-safe so a workspace can later enable Advanced Accounting without losing historical entries (journal lines reference account IDs, not mutable codes/names).
 
     - FA: ماژول حسابداری سبک مبتنی بر دفترکل (GL) و ثبت‌های دوطرفه. از چارت حساب‌های استاندارد و از پیش‌تعریف‌شده استفاده می‌کند که توسط ورک‌اسپیس قابل ویرایش نیست (Locked). با این حال باید شناسه‌های پایدار حساب‌ها را ارائه دهد تا سایر ماژول‌ها بتوانند از طریق مکانیزم Channel/Integration پلتفرم، سند/آرتیکل مالی ثبت کنند. فروش/انبار/دارایی ثابت/بودجه خارج از دامنه این ماژول هستند و ماژول جدا دارند؛ این ماژول فقط ثبت‌های GL و گزارش‌های پایه مالی را پوشش می‌دهد. دیتامدل باید طوری باشد که ارتقاء به حسابداری پیشرفته بدون از دست رفتن سوابق ممکن باشد (ارجاع آرتیکل‌ها به account_id پایدار).
+
+- [ ] MI-0015 | Advanced Accounting (Configurable Account Levels/Hierarchy)
+  - candidate_module_code: finance.accounting_advanced
+  - proposed_category: finance
+  - priority: P1
+  - dependencies: [finance.accounting_basic]
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - applicable_business_segments: [mid_market, enterprise, professional_services, healthcare, manufacturing, retail]
+  - created_at: 2026-02-12
+  - notes:
+
+    - EN: Advanced accounting module that extends Basic Accounting by enabling workspace-managed Chart of Accounts with hierarchical levels (e.g., parent/child rollups; equivalent to “Kol/Moein/…”) and user-defined account structures for reporting. Core GL posting remains the same (double-entry, journal lines posting to account IDs), but COA becomes configurable by the workspace. Must provide an upgrade path from Basic: retain all historical journal entries; either unlock/extend the existing standard COA or introduce a mapping layer from standard accounts to the customized hierarchy for reporting continuity. Sales/Inventory/Fixed Assets/Budgeting remain separate modules; this module’s key differentiator is editable account hierarchy/levels + reporting rollups.
+
+    - FA: ماژول حسابداری پیشرفته که تفاوت اصلی‌اش با نسخه ساده، امکان تعریف و مدیریت چارت حساب‌ها با ساختار سلسله‌مراتبی و طبقات حساب (معادل کل/معین/…) توسط ورک‌اسپیس است. ماهیت ثبت‌ها همان GL دوطرفه می‌ماند (آرتیکل‌ها به account_id ارجاع می‌دهند)، اما COA قابل پیکربندی می‌شود و رول‌آپ‌های گزارش‌گیری از طریق parent/child امکان‌پذیر است. باید مسیر ارتقاء از Basic داشته باشد: هیچ سندی از بین نرود؛ یا COA استاندارد را unlock/extend کند یا یک mapping برای نگهداری تداوم گزارش‌گیری بین حساب‌های استاندارد و ساختار جدید فراهم کند. فروش/انبار/دارایی ثابت/بودجه همچنان ماژول‌های جدا هستند؛ مزیت کلیدی این ماژول فقط طبقات/سلسله‌مراتب حساب و رول‌آپ گزارش‌هاست.
