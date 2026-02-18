@@ -10,7 +10,9 @@
   - applicable_business_segments: all|[restaurant, retail, manufacturing]
   - core_dependency_risk: yes|no
   - created_at: YYYY-MM-DD
-  - notes: ...
+  - notes:
+    - EN: ...
+    - FA: ...
 
 Rule:
 
