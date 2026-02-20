@@ -1,8 +1,8 @@
 # Module Docs Standard (MDS) v1
 
 Status: draft  
-Introduced in: 0.0.0  
-Last updated in: 0.0.0  
+Introduced in: 0.0.1  
+Last updated in: 0.0.1  
 
 Version: 1.0.0
 

@@ -1,5 +1,17 @@
 # Changelog
 
+<!-- markdownlint-disable MD024 -->
+
+## [0.0.1] - 2026-02-20
+
+### Added
+
+### Changed
+
+- Release meta bumped to 0.0.1 (README + MDS SSoT headers)
+
+### Fixed
+
 ## [0.0.0] - 2026-02-10
 
 ### Added

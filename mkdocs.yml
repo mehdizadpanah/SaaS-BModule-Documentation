@@ -24,6 +24,9 @@ nav:
       - Modules Registry: catalogs/modules_registry.yaml
   - Ideas:
       - Inbox: ideas/inbox.md
+  - Docs Backlog:
+      - Inbox: docs_backlog/inbox.md
+      - Backlog: docs_backlog/backlog.md
   - Generated:
       - Modules Index: modules_index.md
   - Modules:
