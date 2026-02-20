@@ -2,8 +2,8 @@
 
 This repository contains:
 
-- Current version: `0.0.0`
-- Release date: 2026-02-10
+- Current version: `0.0.1`
+- Release date: 2026-02-20
 - Module Docs Standard (MDS) v1
 - Catalog SSoT (categories, modules registry)
 - Ideas inbox
