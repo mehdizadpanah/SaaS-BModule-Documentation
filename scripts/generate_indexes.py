@@ -93,6 +93,9 @@ def main() -> int:
     # ideas/ -> .build/docs/ideas/
     copy_tree(root / "ideas", build_docs / "ideas")
 
+    # docs_backlog/ -> .build/docs/docs_backlog/
+    copy_tree(root / "docs_backlog", build_docs / "docs_backlog")
+
     # ------------------------------------------------------------------
     # 2) Aggregate modules docs + assets into .build/docs/modules/<slug>/
     # ------------------------------------------------------------------
@@ -197,6 +200,9 @@ def main() -> int:
         "      - Modules Registry: catalogs/modules_registry.yaml\n",
         "  - Ideas:\n",
         "      - Inbox: ideas/inbox.md\n",
+        "  - Docs Backlog:\n",
+        "      - Inbox: docs_backlog/inbox.md\n",
+        "      - Backlog: docs_backlog/backlog.md\n",
         "  - Generated:\n",
         "      - Modules Index: modules_index.md\n",
         "  - Modules:\n",
