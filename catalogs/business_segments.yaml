@@ -88,6 +88,12 @@ industry_vertical:
   - nonprofit_ngo
   - government
 
+industry_vertical_aliases:
+  # synonyms / legacy keys → canonical (aliases are NOT allowed in ideas)
+  ecommerce: ecommerce_b2c
+  online_store: ecommerce_b2c
+  food_service: restaurant
+
 industry_vertical_labels:
   restaurant:
     en: "Restaurant / Cafe / Fast-food"
