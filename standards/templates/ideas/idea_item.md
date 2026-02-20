@@ -8,6 +8,8 @@
   - platform_compatibility: unknown
   - target_persona: admin|end_user|...
   - applicable_business_segments: all|[restaurant, retail, manufacturing]
+  - *Prefer the most specific industry_vertical key; avoid umbrella keys unless truly cross-vertical*
+  - *ترجیحاً دقیق‌ترین کلید را بزنید؛ از کلیدهای کلی فقط وقتی واقعاً عمومی است استفاده کنید*
   - core_dependency_risk: yes|no
   - created_at: YYYY-MM-DD
   - notes:
