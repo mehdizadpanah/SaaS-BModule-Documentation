@@ -43,7 +43,7 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
   - dependencies: []
   - platform_compatibility: unknown
   - target_persona: admin
-  - applicable_business_segments: all
+  - applicable_business_segments: [restaurant, catering, bakery_patisserie, retail, ecommerce_b2c, ecommerce_marketplace_seller, hospitality]
   - core_dependency_risk: no
   - created_at: 2026-02-11
   - notes:
@@ -59,7 +59,7 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
   - dependencies: [commerce.catalog]
   - platform_compatibility: unknown
   - target_persona: end_user
-  - applicable_business_segments: [restaurant, hospitality, retail, ecommerce_b2c, b2b_commerce]
+  - applicable_business_segments: [restaurant, catering, retail, ecommerce_b2c, ecommerce_marketplace_seller, hospitality]
   - core_dependency_risk: no
   - created_at: 2026-02-11
   - notes:
@@ -75,7 +75,7 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
   - dependencies: [commerce.ordering, core.contacts]
   - platform_compatibility: unknown
   - target_persona: end_user
-  - applicable_business_segments: [restaurant, hospitality, retail, ecommerce_b2c, b2b_commerce]
+  - applicable_business_segments: [restaurant, catering, retail, ecommerce_b2c, ecommerce_marketplace_seller, hospitality]
   - core_dependency_risk: no
   - created_at: 2026-02-11
   - notes:
@@ -107,7 +107,7 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
   - dependencies: [core.products]
   - platform_compatibility: unknown
   - target_persona: admin
-  - applicable_business_segments: [restaurant, hospitality, retail]
+  - applicable_business_segments: [restaurant, retail, events_exhibitions, fitness_gym]
   - core_dependency_risk: no
   - created_at: 2026-02-11
   - notes:
@@ -123,7 +123,7 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
   - dependencies: [commerce.ordering]
   - platform_compatibility: unknown
   - target_persona: admin
-  - applicable_business_segments: [banking_finance, healthcare, government, retail, restaurant]
+  - applicable_business_segments: [medical_clinic, dental, lab_imaging, government, retail, restaurant, insurance_brokerage]
   - core_dependency_risk: no
   - created_at: 2026-02-11
   - notes:
@@ -139,7 +139,7 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
   - dependencies: [commerce.catalog]
   - platform_compatibility: unknown
   - target_persona: end_user
-  - applicable_business_segments: [restaurant, hospitality, retail, healthcare]
+  - applicable_business_segments: [restaurant, hospitality, medical_clinic, dental, retail, fitness_gym]
   - core_dependency_risk: no
   - created_at: 2026-02-12
   - notes:
@@ -156,7 +156,7 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
   - platform_compatibility: unknown
   - target_persona: admin
   - core_dependency_risk: no
-  - applicable_business_segments: [healthcare, professional_services, government, banking_finance, retail]
+  - applicable_business_segments: [medical_clinic, dental, beauty_wellness, school, training_institute, legal_services, accounting_tax, engineering_consulting, government]
   - created_at: 2026-02-12
   - notes:
 
@@ -172,7 +172,7 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
   - platform_compatibility: unknown
   - target_persona: admin
   - core_dependency_risk: no
-  - applicable_business_segments: all
+  - applicable_business_segments: [restaurant, hospitality, retail, medical_clinic, dental, lab_imaging, school, training_institute, fitness_gym, events_exhibitions, government]
   - created_at: 2026-02-12
   - notes:
 
@@ -204,7 +204,7 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
   - platform_compatibility: unknown
   - target_persona: admin
   - core_dependency_risk: no
-  - applicable_business_segments: all
+  - applicable_business_segments: [restaurant, retail, ecommerce_b2c, ecommerce_marketplace_seller, beauty_wellness, fitness_gym, events_exhibitions, travel_agency]
   - created_at: 2026-02-12
   - notes:
 
@@ -236,7 +236,7 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
   - platform_compatibility: unknown
   - target_persona: admin
   - core_dependency_risk: no
-  - applicable_business_segments: [mid_market, enterprise, professional_services, healthcare, manufacturing, retail]
+  - applicable_business_segments: [mid_market, enterprise, manufacturing, food_manufacturing, textile_apparel, printing_packaging, machining_workshop, distribution, wholesale, construction_contracting, accounting_tax, corporate_financial_services]
   - created_at: 2026-02-12
   - notes:
 
