@@ -2,3 +2,6 @@ categories:
   - key: core-platform
     title: Core / Platform
     description: Core & platform capabilities
+  - key: commerce
+    title: Commerce
+    description: Catalog, ordering, and checkout capabilities (QR/menu, web storefront, payments).

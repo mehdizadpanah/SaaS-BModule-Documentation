@@ -76,6 +76,36 @@ FAIL:
 
 ---
 
+### Gate: Ideas (Business Segments Registry)
+
+Purpose: enforce that `applicable_business_segments` uses only official registry keys.
+
+#### Granularity Rule (EN/FA)
+
+**EN:** When assigning `applicable_business_segments`, choose the most specific `industry_vertical` key available (e.g., `medical_clinic`, `dental`) rather than broad umbrella keys (e.g., `healthcare`). Use umbrella keys only if the idea is genuinely applicable across multiple sub-verticals, or when no more specific key exists.
+
+**FA:** «برای `applicable_business_segments` تا حد ممکن دقیق‌ترین کلید `industry_vertical` را انتخاب کنید (مثل `medical_clinic` یا `dental`) و از کلیدهای کلی مثل `healthcare` فقط زمانی استفاده کنید که ایده واقعاً برای چند زیرشاخه کاربرد دارد یا کلید دقیق‌تر وجود ندارد.»
+
+Registry:
+
+* `catalogs/business_segments.yaml` (includes both verticals and tiers; consumed as one list in ideas)
+
+Command:
+
+```bash
+python3 scripts/validate_ideas.py
+```
+
+PASS:
+
+* Exit code = 0
+
+FAIL:
+
+* Any idea uses a segment key not present in `catalogs/business_segments.yaml`
+
+---
+
 ### Gate 3: Catalog Exports
 
 Purpose: ensure registry catalogs can be exported for CI/tools.
