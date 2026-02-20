@@ -147,8 +147,8 @@ industry_vertical_labels:
     fa: "فریت/کارگو بین‌الملل"
 
   manufacturing:
-    en: "General Manufacturing / Factory"
-    fa: "تولید عمومی/کارخانه"
+    en: "Manufacturing (General)"
+    fa: "تولید (عمومی)"
   food_manufacturing:
     en: "Food & Beverage Manufacturing"
     fa: "صنایع غذایی (کارخانه مواد غذایی/نوشیدنی)"
@@ -199,7 +199,7 @@ industry_vertical_labels:
 
   healthcare:
     en: "Healthcare (General)"
-    fa: "سلامت و مراقبت"
+    fa: "سلامت و مراقبت (عمومی)"
   medical_clinic:
     en: "Medical Clinic / Polyclinic"
     fa: "کلینیک پزشکی/پلی‌کلینیک"
@@ -266,8 +266,8 @@ industry_vertical_labels:
     fa: "مراکز تفریحی/کلوب‌ها"
 
   agriculture:
-    en: "Agriculture / Horticulture"
-    fa: "کشاورزی/باغداری"
+    en: "Agriculture (General)"
+    fa: "کشاورزی (عمومی)"
   greenhouse_hydroponics:
     en: "Greenhouse / Hydroponics"
     fa: "گلخانه/هیدروپونیک"
