@@ -1,16 +1,303 @@
 industry_vertical:
+  # Food / Hospitality / Tourism
   - restaurant
+  - catering
+  - bakery_patisserie
   - hospitality
+  - travel_agency
+
+  # Commerce & Sales
   - retail
+  - wholesale
+  - distribution
   - ecommerce_b2c
+  - ecommerce_marketplace_seller
   - b2b_commerce
-  - banking_finance
-  - healthcare
-  - government
-  - professional_services
+  - import_export
+
+  # Logistics & Transportation
+  - logistics_warehousing
+  - courier_last_mile
+  - passenger_transport
+  - international_freight
+
+  # Manufacturing & Workshops
   - manufacturing
+  - food_manufacturing
+  - textile_apparel
+  - printing_packaging
+  - machining_workshop
+  - cosmetics_pharma
+
+  # Construction & Real Estate
+  - construction_contracting
+  - mep_services
+  - architecture_design
+  - real_estate
+  - property_management
+
+  # Field & Technical Services
+  - field_service
+  - security_safety_systems
+  - facility_services
+  - automotive_services
+  - equipment_rental
+
+  # Health & Care
+  - healthcare
+  - medical_clinic
+  - dental
+  - beauty_wellness
+  - lab_imaging
+  - pharmacy
+
+  # Education
+  - school
+  - training_institute
+  - corporate_training
+
+  # Professional B2B Services
+  - professional_services
+  - engineering_consulting
+  - it_msp
+  - accounting_tax
+  - legal_services
+  - marketing_agency
+  - management_consulting
+  - industrial_rnd
+
+  # Media & Culture
+  - media_content_studio
+  - events_exhibitions
+
+  # Sports & Entertainment
+  - fitness_gym
+  - entertainment_venue
+
+  # Agriculture & Natural Resources
+  - agriculture
+  - greenhouse_hydroponics
+  - livestock_aquaculture
+
+  # Finance / Insurance (optional)
+  - banking_finance
+  - insurance_brokerage
+  - corporate_financial_services
+
+  # NGO / Public (optional)
+  - nonprofit_ngo
+  - government
+
+industry_vertical_labels:
+  restaurant:
+    en: "Restaurant / Cafe / Fast-food"
+    fa: "رستوران/کافه/فست‌فود"
+  catering:
+    en: "Catering (Corporate / Events)"
+    fa: "کترینگ و تهیه غذا (سازمانی/مجالس)"
+  bakery_patisserie:
+    en: "Bakery / Patisserie"
+    fa: "نانوایی/قنادی/شیرینی‌پزی"
+  hospitality:
+    en: "Hotel / Hostel / Accommodation"
+    fa: "هتل/هاستل/اقامتگاه"
+  travel_agency:
+    en: "Travel Agency / Tours / Booking"
+    fa: "آژانس مسافرتی/تور/رزرو"
+
+  retail:
+    en: "Retail (Stores / Chains)"
+    fa: "خرده‌فروشی (فروشگاه/زنجیره‌ای)"
+  wholesale:
+    en: "Wholesale"
+    fa: "عمده‌فروشی/بنکداری"
+  distribution:
+    en: "Distribution (Route Sales)"
+    fa: "پخش و توزیع مویرگی"
+  ecommerce_b2c:
+    en: "E-commerce (Online Store)"
+    fa: "تجارت الکترونیک (فروشگاه آنلاین)"
+  ecommerce_marketplace_seller:
+    en: "Marketplace Seller"
+    fa: "مارکت‌پلیس سلر"
+  b2b_commerce:
+    en: "B2B Commerce"
+    fa: "تجارت B2B"
+  import_export:
+    en: "Import / Export"
+    fa: "واردات/صادرات و بازرگانی"
+
+  logistics_warehousing:
+    en: "Logistics / Warehousing"
+    fa: "باربری/لجستیک/انبارهای لجستیکی"
+  courier_last_mile:
+    en: "Courier / Last-mile Delivery"
+    fa: "پیک/کوریر/ارسال شهری"
+  passenger_transport:
+    en: "Passenger Transport (Shuttle/Corporate/Tourism)"
+    fa: "حمل‌ونقل مسافر (سرویس/شرکتی/گردشگری)"
+  international_freight:
+    en: "International Freight / Cargo"
+    fa: "فریت/کارگو بین‌الملل"
+
+  manufacturing:
+    en: "General Manufacturing / Factory"
+    fa: "تولید عمومی/کارخانه"
+  food_manufacturing:
+    en: "Food & Beverage Manufacturing"
+    fa: "صنایع غذایی (کارخانه مواد غذایی/نوشیدنی)"
+  textile_apparel:
+    en: "Textile / Apparel"
+    fa: "نساجی/پوشاک/کارگاه خیاطی"
+  printing_packaging:
+    en: "Printing / Packaging"
+    fa: "چاپ/تبلیغات چاپی/بسته‌بندی"
+  machining_workshop:
+    en: "Machining / Industrial Workshop"
+    fa: "قطعات و تعمیرات صنعتی/کارگاه ماشین‌کاری"
+  cosmetics_pharma:
+    en: "Cosmetics / Pharma (Regulated)"
+    fa: "دارویی/آرایشی-بهداشتی (با محدودیت‌های رگولاتوری)"
+
+  construction_contracting:
+    en: "Construction Contracting"
+    fa: "پیمانکاری ساختمان/عمرانی"
+  mep_services:
+    en: "MEP Services"
+    fa: "تاسیسات مکانیکی/برقی ساختمان (MEP)"
+  architecture_design:
+    en: "Architecture / Interior Design"
+    fa: "معماری/طراحی داخلی/دکوراسیون"
+  real_estate:
+    en: "Real Estate Agency"
+    fa: "املاک (مشاور املاک/دفتر املاک)"
+  property_management:
+    en: "Property / Building Management"
+    fa: "مدیریت ساختمان/مجتمع/شارژ و خدمات"
+
+  field_service:
+    en: "Installation & Field Service"
+    fa: "خدمات نصب و تعمیرات (Field Service)"
+  security_safety_systems:
+    en: "Elevator / Safety / CCTV / Fire Alarm"
+    fa: "آسانسور/سیستم‌های ایمنی/دوربین/اعلام حریق"
+  facility_services:
+    en: "Facility / Janitorial Services"
+    fa: "خدمات نظافت و پشتیبانی (Facility/Janitorial)"
+  automotive_services:
+    en: "Automotive Services"
+    fa: "خدمات خودرو (تعمیرگاه/نمایندگی/قطعات)"
+  equipment_rental:
+    en: "Equipment Rental"
+    fa: "اجاره تجهیزات/خدمات ماشین‌آلات"
+
+  healthcare:
+    en: "Healthcare (General)"
+    fa: "سلامت و مراقبت"
+  medical_clinic:
+    en: "Medical Clinic / Polyclinic"
+    fa: "کلینیک پزشکی/پلی‌کلینیک"
+  dental:
+    en: "Dental"
+    fa: "دندانپزشکی"
+  beauty_wellness:
+    en: "Beauty / Spa / Salons"
+    fa: "زیبایی/اسپا/سالن‌ها"
+  lab_imaging:
+    en: "Lab / Imaging"
+    fa: "آزمایشگاه/تصویربرداری"
+  pharmacy:
+    en: "Pharmacy"
+    fa: "داروخانه"
+
+  school:
+    en: "School"
+    fa: "مدرسه"
+  training_institute:
+    en: "Training Institute"
+    fa: "آموزشگاه/مؤسسه آموزشی"
+  corporate_training:
+    en: "Corporate Training (L&D)"
+    fa: "آموزش سازمانی (L&D/HR Training)"
+
+  professional_services:
+    en: "Professional Services (General)"
+    fa: "خدمات حرفه‌ای (عمومی)"
+  engineering_consulting:
+    en: "Engineering & Design Firms"
+    fa: "شرکت‌های مهندسی و طراحی"
+  it_msp:
+    en: "IT Services / MSP"
+    fa: "شرکت‌های IT / MSP / خدمات فناوری"
+  accounting_tax:
+    en: "Accounting / Tax"
+    fa: "حسابداری/مالیاتی/دفاتر خدمات مالی"
+  legal_services:
+    en: "Legal Services"
+    fa: "حقوقی/دفاتر وکالت/ثبتی"
+  marketing_agency:
+    en: "Advertising / Digital Marketing Agencies"
+    fa: "تبلیغات/دیجیتال مارکتینگ/آژانس‌ها"
+  management_consulting:
+    en: "Management Consulting"
+    fa: "مشاوره مدیریت/کسب‌وکار"
+  industrial_rnd:
+    en: "Industrial R&D / Labs"
+    fa: "تحقیق و توسعه/لابراتوارهای صنعتی"
+
+  media_content_studio:
+    en: "Content Production / Studio / Media"
+    fa: "تولید محتوا/استودیو/رسانه"
+  events_exhibitions:
+    en: "Events / Exhibitions"
+    fa: "رویدادها و نمایشگاه‌ها"
+
+  fitness_gym:
+    en: "Gym / Fitness Club"
+    fa: "باشگاه ورزشی"
+  entertainment_venue:
+    en: "Entertainment Centers / Clubs"
+    fa: "مراکز تفریحی/کلوب‌ها"
+
+  agriculture:
+    en: "Agriculture / Horticulture"
+    fa: "کشاورزی/باغداری"
+  greenhouse_hydroponics:
+    en: "Greenhouse / Hydroponics"
+    fa: "گلخانه/هیدروپونیک"
+  livestock_aquaculture:
+    en: "Livestock / Poultry / Aquaculture"
+    fa: "دامداری/طیور/آبزی‌پروری"
+
+  banking_finance:
+    en: "Banking / Finance"
+    fa: "مالی/بانکی"
+  insurance_brokerage:
+    en: "Insurance Brokerage"
+    fa: "بیمه و کارگزاری بیمه"
+  corporate_financial_services:
+    en: "Corporate Financial Services"
+    fa: "خدمات مالی شرکتی"
+
+  nonprofit_ngo:
+    en: "Nonprofit / NGO"
+    fa: "خیریه/NGO/انجمن‌ها"
+  government:
+    en: "Public Sector / Government"
+    fa: "سازمان‌ها و نهادهای عمومی"
 
 company_tier:
   - smb
   - mid_market
   - enterprise
+
+company_tier_labels:
+  smb:
+    en: "SMB"
+    fa: "کسب‌وکار کوچک"
+  mid_market:
+    en: "Mid-market"
+    fa: "متوسط"
+  enterprise:
+    en: "Enterprise"
+    fa: "سازمانی/بزرگ"

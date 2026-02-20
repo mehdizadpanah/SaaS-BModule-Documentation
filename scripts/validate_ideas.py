@@ -186,6 +186,56 @@ def _load_business_segment_registry(root: Path) -> set[str]:
             continue
         if not isinstance(group, list) or not all(isinstance(x, str) for x in group):
             fail(f"{registry_path.as_posix()}: '{group_key}' must be a list of strings.")
+        if len(set(group)) != len(group):
+            seen: set[str] = set()
+            dupes: list[str] = []
+            for item in group:
+                if item in seen and item not in dupes:
+                    dupes.append(item)
+                seen.add(item)
+            fail(
+                f"{registry_path.as_posix()}: '{group_key}' contains duplicate key(s): "
+                f"{', '.join(dupes)}"
+            )
+
+        labels_key = f"{group_key}_labels"
+        labels = raw.get(labels_key)
+        if labels is not None:
+            if not isinstance(labels, dict):
+                fail(f"{registry_path.as_posix()}: '{labels_key}' must be a mapping.")
+
+            missing_labels = [k for k in group if k not in labels]
+            if missing_labels:
+                fail(
+                    f"{registry_path.as_posix()}: '{labels_key}' missing label(s) for: "
+                    f"{', '.join(missing_labels)}"
+                )
+
+            extras = sorted([k for k in labels.keys() if k not in set(group)])
+            if extras:
+                fail(
+                    f"{registry_path.as_posix()}: '{labels_key}' has extra label key(s) not in '{group_key}': "
+                    f"{', '.join(extras)}"
+                )
+
+            for key, label in labels.items():
+                if not isinstance(key, str):
+                    fail(f"{registry_path.as_posix()}: '{labels_key}' keys must be strings.")
+                if not isinstance(label, dict):
+                    fail(
+                        f"{registry_path.as_posix()}: '{labels_key}.{key}' must be a mapping with 'en' and 'fa'."
+                    )
+                if set(label.keys()) != {"en", "fa"}:
+                    present = ", ".join(sorted([str(k) for k in label.keys()]))
+                    fail(
+                        f"{registry_path.as_posix()}: '{labels_key}.{key}' must have exactly keys 'en' and 'fa'; "
+                        f"found: {present}"
+                    )
+                if not isinstance(label.get("en"), str) or not isinstance(label.get("fa"), str):
+                    fail(
+                        f"{registry_path.as_posix()}: '{labels_key}.{key}.en' and '.fa' must both be strings."
+                    )
+
         allowed.update(group)
 
     if not allowed:
