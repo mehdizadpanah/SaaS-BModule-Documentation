@@ -243,3 +243,643 @@ Rule: Inbox is for quick capture only. Grooming happens later by moving items to
     - EN: Advanced accounting module that extends Basic Accounting by enabling workspace-managed Chart of Accounts with hierarchical levels (e.g., parent/child rollups; equivalent to “Kol/Moein/…”) and user-defined account structures for reporting. Core GL posting remains the same (double-entry, journal lines posting to account IDs), but COA becomes configurable by the workspace. Must provide an upgrade path from Basic: retain all historical journal entries; either unlock/extend the existing standard COA or introduce a mapping layer from standard accounts to the customized hierarchy for reporting continuity. Sales/Inventory/Fixed Assets/Budgeting remain separate modules; this module’s key differentiator is editable account hierarchy/levels + reporting rollups.
 
     - FA: ماژول حسابداری پیشرفته که تفاوت اصلی‌اش با نسخه ساده، امکان تعریف و مدیریت چارت حساب‌ها با ساختار سلسله‌مراتبی و طبقات حساب (معادل کل/معین/…) توسط ورک‌اسپیس است. ماهیت ثبت‌ها همان GL دوطرفه می‌ماند (آرتیکل‌ها به account_id ارجاع می‌دهند)، اما COA قابل پیکربندی می‌شود و رول‌آپ‌های گزارش‌گیری از طریق parent/child امکان‌پذیر است. باید مسیر ارتقاء از Basic داشته باشد: هیچ سندی از بین نرود؛ یا COA استاندارد را unlock/extend کند یا یک mapping برای نگهداری تداوم گزارش‌گیری بین حساب‌های استاندارد و ساختار جدید فراهم کند. فروش/انبار/دارایی ثابت/بودجه همچنان ماژول‌های جدا هستند؛ مزیت کلیدی این ماژول فقط طبقات/سلسله‌مراتب حساب و رول‌آپ گزارش‌هاست.
+
+- [ ] MI-0016 | Integration & API Gateway / Webhooks (هاب یکپارچه‌سازی)
+  - candidate_module_code: core.integration_gateway
+  - proposed_category: core-platform
+  - priority: P1
+  - dependencies: []
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: yes
+  - applicable_business_segments: all
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Central integration hub for inbound/outbound APIs, webhooks, and event delivery; manages credentials, rate limits, retries, and tenant-scoped connectors/adapters.
+
+    - FA: هاب مرکزی یکپارچه‌سازی برای API و Webhook و انتشار/تحویل رویدادها؛ مدیریت Credential، Rate limit، Retry و کانکتورها/آداپترهای tenant-scoped.
+
+- [ ] MI-0017 | Role-based Access + Audit Log (کنترل دسترسی و لاگ)
+  - candidate_module_code: core.rbac_audit
+  - proposed_category: core-platform
+  - priority: P1
+  - dependencies: []
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: yes
+  - applicable_business_segments: all
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Workspace RBAC (roles/permissions) plus immutable audit log for security and compliance; supports actor, action, target, timestamp, and retention policy.
+
+    - FA: RBAC در سطح ورک‌اسپیس (نقش/دسترسی) به‌همراه Audit Log غیرقابل‌دستکاری برای امنیت و انطباق؛ شامل actor/action/target/time و سیاست نگهداشت.
+
+- [ ] MI-0018 | Company AI Assistant (دستیار هوش مصنوعی ورک‌اسپیس)
+  - candidate_module_code: core.ai_assistant
+  - proposed_category: core-platform
+  - priority: P2
+  - dependencies: [core.integration_gateway]
+  - platform_compatibility: unknown
+  - target_persona: end_user
+  - core_dependency_risk: yes
+  - applicable_business_segments: all
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Workspace AI assistant that answers questions over workspace data and suggests actions/automations; must respect RBAC and provide citations/traceability for outputs.
+
+    - FA: دستیار AI برای پرسش‌وپاسخ روی دیتای ورک‌اسپیس و پیشنهاد اقدام/اتوماسیون؛ الزام رعایت RBAC و ارائه ردپا/استناد برای خروجی‌ها.
+
+- [ ] MI-0019 | CRM (Services/Ticketing) (CRM خدمات/تیکتینگ)
+  - candidate_module_code: service.crm
+  - proposed_category: process
+  - priority: P1
+  - dependencies: [core.contacts, core.products, core.rbac_audit]
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - applicable_business_segments: [it_msp, field_service, security_safety_systems, construction_contracting, mep_services, automotive_services, accounting_tax, legal_services, medical_clinic, dental, lab_imaging, property_management, government]
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Service CRM/ticketing with intake, assignment, SLA, statuses, internal notes, and reporting; links tickets to contacts, assets/items, and optional appointments/queue.
+
+    - FA: CRM خدمات/تیکتینگ با ثبت درخواست، تخصیص، SLA، وضعیت‌ها، نوت داخلی و گزارش‌گیری؛ اتصال تیکت به مخاطب، دارایی/آیتم و در صورت نیاز رزرو/صف.
+
+- [ ] MI-0020 | Contracts (in/out) (قراردادهای ورودی/خروجی)
+  - candidate_module_code: process.contracts
+  - proposed_category: process
+  - priority: P1
+  - dependencies: [core.contacts, process.workflow_approvals]
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - applicable_business_segments: all
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Contract lifecycle management for inbound/outbound agreements: templates, versions, approval flow, obligations, renewal alerts, and attachments.
+
+    - FA: مدیریت چرخه عمر قراردادهای ورودی/خروجی: قالب‌ها، نسخه‌ها، گردش تایید، تعهدات، هشدار تمدید و پیوست‌ها.
+
+- [ ] MI-0021 | Workflow & Approvals (گردش‌کار و تاییدیه‌ها)
+  - candidate_module_code: process.workflow_approvals
+  - proposed_category: process
+  - priority: P1
+  - dependencies: [core.rbac_audit]
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: yes
+  - applicable_business_segments: all
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Configurable workflows and approval chains (rules/conditions/routing) reusable across modules (expenses, procurement, contracts, HR, etc.).
+
+    - FA: موتور گردش‌کار و تاییدیه قابل پیکربندی (قواعد/شرایط/مسیر‌دهی) قابل استفاده مجدد بین ماژول‌ها (هزینه‌ها، خرید، قرارداد، منابع انسانی و…).
+
+- [ ] MI-0022 | Project & Task Management (مدیریت پروژه‌ها و تسک‌ها)
+  - candidate_module_code: process.projects_tasks
+  - proposed_category: process
+  - priority: P2
+  - dependencies: [core.contacts, core.rbac_audit]
+  - platform_compatibility: unknown
+  - target_persona: end_user
+  - core_dependency_risk: no
+  - applicable_business_segments: [it_msp, construction_contracting, engineering_consulting, marketing_agency, management_consulting]
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Projects, tasks, assignments, statuses, and basic planning views; supports team collaboration and optional workflow approvals for changes.
+
+    - FA: مدیریت پروژه/تسک با تخصیص، وضعیت‌ها و نماهای پایه برنامه‌ریزی؛ همکاری تیمی و در صورت نیاز تاییدیه تغییرات.
+
+- [ ] MI-0023 | Reports / Dashboards / KPI Builder (گزارشات و شاخص‌ها)
+  - candidate_module_code: analytics.reports_kpi
+  - proposed_category: analytics
+  - priority: P1
+  - dependencies: []
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - applicable_business_segments: all
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Self-serve dashboards and KPI builder across modules with scheduling/export and RBAC-aware data access.
+
+    - FA: داشبورد و KPI ساز سلف‌سرویس بین ماژول‌ها با زمان‌بندی/خروجی و رعایت دسترسی‌ها.
+
+- [ ] MI-0024 | Document Management + OCR (مدیریت اسناد + OCR)
+  - candidate_module_code: documents.dms_ocr
+  - proposed_category: documents
+  - priority: P1
+  - dependencies: [core.rbac_audit]
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - applicable_business_segments: all
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Document repository with tagging, versioning, full-text search, and OCR extraction for scans; supports retention and access policies.
+
+    - FA: مخزن اسناد با تگ/نسخه‌بندی/جستجوی متنی و استخراج OCR از اسکن‌ها؛ دارای سیاست نگهداشت و دسترسی.
+
+- [ ] MI-0025 | Treasury / Cash Management (خزانه)
+  - candidate_module_code: finance.treasury
+  - proposed_category: finance
+  - priority: P1
+  - dependencies: [finance.accounting_basic]
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - applicable_business_segments: all
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Cash/bank accounts, cashboxes, transfers, reconciliations, and payment instruments; integrates with accounting postings.
+
+    - FA: مدیریت حساب‌های بانکی/صندوق، انتقال‌ها، مغایرت‌گیری و ابزار پرداخت؛ یکپارچه با ثبت‌های حسابداری.
+
+- [ ] MI-0026 | Cashflow & Liquidity (مدیریت نقدینگی)
+  - candidate_module_code: finance.cashflow_liquidity
+  - proposed_category: finance
+  - priority: P1
+  - dependencies: [finance.treasury, finance.ar_ap]
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - applicable_business_segments: all
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Cashflow forecasting, liquidity snapshots, scenarios, and alerts based on receivables/payables and planned payments.
+
+    - FA: پیش‌بینی جریان نقدی، نمای نقدینگی، سناریوها و هشدارها بر اساس دریافتنی/پرداختنی و پرداخت‌های برنامه‌ریزی‌شده.
+
+- [ ] MI-0027 | Receivables/Payables (AR/AP) (حساب‌های دریافتنی/پرداختنی)
+  - candidate_module_code: finance.ar_ap
+  - proposed_category: finance
+  - priority: P1
+  - dependencies: [finance.accounting_basic, core.contacts]
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - applicable_business_segments: all
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Open-item tracking for invoices/bills, aging, reminders, settlement status; posts summarized entries to GL.
+
+    - FA: مدیریت آیتم‌های باز دریافتنی/پرداختنی، سررسیدها، پیگیری و وضعیت تسویه؛ ارسال ثبت‌های خلاصه به GL.
+
+- [ ] MI-0028 | Credit & Installment Management (مدیریت اعتبارات و اقساط)
+  - candidate_module_code: finance.credit_installments
+  - proposed_category: finance
+  - priority: P2
+  - dependencies: [finance.ar_ap, core.contacts]
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - applicable_business_segments: [retail, dental, automotive_services, beauty_wellness]
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Credit limits, installment plans, schedules, penalties, and delinquency tracking; integrates with AR collection workflow.
+
+    - FA: سقف اعتبار، پلن اقساط، زمان‌بندی، جریمه و مدیریت معوقه؛ یکپارچه با وصول دریافتنی‌ها.
+
+- [ ] MI-0029 | Expense & Reimbursement (هزینه‌ها/ماموریت/صورت‌هزینه)
+  - candidate_module_code: finance.expense_reimbursement
+  - proposed_category: finance
+  - priority: P1
+  - dependencies: [process.workflow_approvals, finance.accounting_basic]
+  - platform_compatibility: unknown
+  - target_persona: end_user
+  - core_dependency_risk: no
+  - applicable_business_segments: all
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Expense claims with receipt capture, policies, approvals, and reimbursement; posts to treasury/accounting.
+
+    - FA: مدیریت صورت‌هزینه با ثبت رسید، قوانین، تاییدیه و بازپرداخت؛ ارسال به خزانه/حسابداری.
+
+- [ ] MI-0030 | Advance / Petty Cash (تن‌خواه)
+  - candidate_module_code: finance.petty_cash
+  - proposed_category: finance
+  - priority: P2
+  - dependencies: [process.workflow_approvals, finance.treasury]
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - applicable_business_segments: all
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Manage advances/petty cash balances, allocations, settlements, and reconciliations per employee/unit.
+
+    - FA: مدیریت تن‌خواه/علی‌الحساب، تخصیص، تسویه و مغایرت‌گیری به تفکیک فرد/واحد.
+
+- [ ] MI-0031 | Receipts / Vouchers (رسید/سند)
+  - candidate_module_code: finance.vouchers
+  - proposed_category: finance
+  - priority: P2
+  - dependencies: [finance.accounting_basic, documents.dms_ocr]
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - applicable_business_segments: all
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Voucher/receipt entry layer with numbering, attachments, and audit trail; bridges operational docs to accounting entries.
+
+    - FA: لایه ثبت سند/رسید با شماره‌گذاری، پیوست و ردپا؛ پل بین مستندات عملیاتی و ثبت‌های حسابداری.
+
+- [ ] MI-0032 | Asset Register (ثبت دارایی‌ها)
+  - candidate_module_code: finance.asset_register
+  - proposed_category: finance
+  - priority: P2
+  - dependencies: [finance.accounting_basic]
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - applicable_business_segments: all
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Fixed asset registry with lifecycle (acquire/assign/transfer/dispose) and basic depreciation hooks (rules may be extended later).
+
+    - FA: رجیستری دارایی ثابت با چرخه عمر (خرید/تخصیص/انتقال/اسقاط) و قلاب‌های استهلاک پایه (قابل توسعه در آینده).
+
+- [ ] MI-0033 | Time & Attendance (ثبت ورود/خروج)
+  - candidate_module_code: people.time_attendance
+  - proposed_category: people-ops
+  - priority: P1
+  - dependencies: [core.contacts, core.rbac_audit]
+  - platform_compatibility: unknown
+  - target_persona: end_user
+  - core_dependency_risk: no
+  - applicable_business_segments: all
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Attendance, shifts, clock-in/out, exceptions, and export; supports device integrations later (biometric/mobile/kiosk).
+
+    - FA: حضور و غیاب، شیفت‌ها، ورود/خروج، استثناها و خروجی؛ با قابلیت اتصال به دستگاه‌ها در آینده.
+
+- [ ] MI-0034 | Payroll (Simple) (حقوق و دستمزد ساده)
+  - candidate_module_code: people.payroll_basic
+  - proposed_category: people-ops
+  - priority: P2
+  - dependencies: [people.time_attendance, finance.accounting_basic]
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - applicable_business_segments: all
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Basic payroll calculation and payslips with configurable earnings/deductions; posts aggregated payroll entries to accounting.
+
+    - FA: محاسبه حقوق پایه و فیش حقوقی با آیتم‌های قابل تنظیم؛ ارسال ثبت‌های تجمیعی حقوق به حسابداری.
+
+- [ ] MI-0035 | Payroll (Professional) (حقوق و دستمزد حرفه‌ای)
+  - candidate_module_code: people.payroll_pro
+  - proposed_category: people-ops
+  - priority: P2
+  - dependencies: [people.payroll_basic]
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - applicable_business_segments: [manufacturing, distribution, retail, hospitality, medical_clinic, lab_imaging, government]
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Advanced payroll for complex organizations (multi-branch rules, shift differentials, overtime policies, richer reporting).
+
+    - FA: حقوق و دستمزد پیشرفته برای سازمان‌های پیچیده (قوانین چندشعبه، تفاوت شیفت، اضافه‌کاری، گزارش‌گیری غنی‌تر).
+
+- [ ] MI-0036 | Simple Stock (انبار ساده)
+  - candidate_module_code: inventory.stock_simple
+  - proposed_category: inventory
+  - priority: P1
+  - dependencies: [core.products]
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - applicable_business_segments: [retail, wholesale, distribution, bakery_patisserie, restaurant, agriculture, greenhouse_hydroponics]
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Simple inventory with on-hand quantities, basic in/out movements, and stock count adjustments.
+
+    - FA: انبارداری ساده با موجودی لحظه‌ای، ورود/خروج پایه و اصلاحات انبارگردانی.
+
+- [ ] MI-0037 | Advanced Stock (Multi-warehouse, Lot/Serial, Min/Max) (انبار پیشرفته)
+  - candidate_module_code: inventory.stock_advanced
+  - proposed_category: inventory
+  - priority: P1
+  - dependencies: [inventory.stock_simple]
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - applicable_business_segments: [manufacturing, food_manufacturing, cosmetics_pharma, distribution, logistics_warehousing, import_export]
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Advanced inventory features: multi-warehouse, bins, lot/serial, expiry, min/max, and richer costing hooks.
+
+    - FA: قابلیت‌های انبار پیشرفته: چندانبار، باین، سریال/لات، تاریخ انقضا، حداقل/حداکثر و قلاب‌های بهای تمام‌شده.
+
+- [ ] MI-0038 | Purchasing / Procurement (خرید و تامین‌کننده)
+  - candidate_module_code: inventory.procurement
+  - proposed_category: inventory
+  - priority: P1
+  - dependencies: [inventory.stock_advanced, process.workflow_approvals, core.contacts]
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - applicable_business_segments: [manufacturing, distribution, retail, construction_contracting, mep_services, hospitality, restaurant, cosmetics_pharma]
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Procurement workflow: requisitions, approvals, RFQ/quotes, purchase orders, receiving, and supplier performance notes.
+
+    - FA: فرایند خرید: درخواست خرید، تاییدیه، استعلام/پیشنهاد، سفارش خرید، رسید انبار و ارزیابی تامین‌کننده.
+
+- [ ] MI-0039 | Supplier Portal (پورتال تامین‌کننده)
+  - candidate_module_code: inventory.supplier_portal
+  - proposed_category: inventory
+  - priority: P2
+  - dependencies: [inventory.procurement, core.integration_gateway]
+  - platform_compatibility: unknown
+  - target_persona: end_user
+  - core_dependency_risk: no
+  - applicable_business_segments: [manufacturing, distribution, wholesale, retail, construction_contracting]
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Supplier self-service portal for onboarding, quote submission, PO acknowledgment, shipment updates, and document exchange.
+
+    - FA: پورتال سلف‌سرویس تامین‌کننده برای ثبت‌نام، ارسال پیشنهاد، تایید PO، آپدیت ارسال و تبادل اسناد.
+
+- [ ] MI-0040 | Inventory Forecasting (پیش‌بینی مصرف/سفارش خرید)
+  - candidate_module_code: inventory.forecasting
+  - proposed_category: inventory
+  - priority: P2
+  - dependencies: [inventory.stock_simple, inventory.procurement]
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - applicable_business_segments: [retail, distribution, manufacturing, food_manufacturing, restaurant, catering, greenhouse_hydroponics]
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Forecast consumption/demand and suggest replenishment; supports seasonality, lead time, and safety stock.
+
+    - FA: پیش‌بینی مصرف/تقاضا و پیشنهاد تامین؛ پشتیبانی از فصلی‌بودن، زمان تامین و موجودی اطمینان.
+
+- [ ] MI-0041 | Fleet & Delivery Management (مدیریت ناوگان و ارسال)
+  - candidate_module_code: operations.fleet_delivery
+  - proposed_category: operations
+  - priority: P2
+  - dependencies: [commerce.ordering, inventory.stock_simple]
+  - platform_compatibility: unknown
+  - target_persona: end_user
+  - core_dependency_risk: no
+  - applicable_business_segments: [distribution, logistics_warehousing, courier_last_mile, restaurant, field_service, equipment_rental]
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Dispatch, driver assignment, delivery statuses, route planning hooks, and proof-of-delivery; can consume order events.
+
+    - FA: دیسپچ و تخصیص راننده، وضعیت ارسال، قلاب‌های مسیریابی و تایید تحویل؛ قابلیت مصرف رویدادهای سفارش.
+
+- [ ] MI-0042 | Cloud POS (Offline/Online) (پایانه فروش ابری)
+  - candidate_module_code: commerce.pos
+  - proposed_category: commerce
+  - priority: P1
+  - dependencies: [core.products, finance.accounting_basic]
+  - platform_compatibility: unknown
+  - target_persona: end_user
+  - core_dependency_risk: no
+  - applicable_business_segments: [restaurant, retail, bakery_patisserie]
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: POS with offline/online modes, cashier operations, receipts, returns, and sync; integrates with inventory/accounting if enabled.
+
+    - FA: POS با حالت آنلاین/آفلاین، عملیات صندوق، رسید، مرجوعی و همگام‌سازی؛ اتصال به انبار/حسابداری در صورت فعال بودن.
+
+- [ ] MI-0043 | Kitchen Display System (KDS) (نمایشگر آشپزخانه)
+  - candidate_module_code: commerce.kds
+  - proposed_category: commerce
+  - priority: P2
+  - dependencies: [commerce.ordering]
+  - platform_compatibility: unknown
+  - target_persona: end_user
+  - core_dependency_risk: no
+  - applicable_business_segments: [restaurant, catering, bakery_patisserie]
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Kitchen screen for live orders, preparation stages, batching, and ready/serve signals; supports multiple stations.
+
+    - FA: نمایش زنده سفارش‌ها در آشپزخانه با مراحل آماده‌سازی، دسته‌بندی و اعلام آماده/تحویل؛ پشتیبانی از چند ایستگاه.
+
+- [ ] MI-0044 | Table Management (مدیریت میز/رزرو میز)
+  - candidate_module_code: commerce.table_management
+  - proposed_category: commerce
+  - priority: P2
+  - dependencies: [commerce.ordering]
+  - platform_compatibility: unknown
+  - target_persona: end_user
+  - core_dependency_risk: no
+  - applicable_business_segments: [restaurant, hospitality]
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Table map/status (free/occupied/reserved), basic reservations, and linkage to ordering contexts (table_id tokens).
+
+    - FA: مدیریت وضعیت میز (خالی/اشغال/رزرو)، رزرو پایه و اتصال به کانتکست سفارش (توکن table_id).
+
+- [ ] MI-0045 | Loyalty & Rewards Engine (وفاداری و پاداش)
+  - candidate_module_code: cx.loyalty_rewards
+  - proposed_category: cx-marketing
+  - priority: P2
+  - dependencies: [commerce.customers, commerce.audience]
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - applicable_business_segments: [restaurant, retail, ecommerce_b2c, ecommerce_marketplace_seller, bakery_patisserie, beauty_wellness, fitness_gym]
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Points, tiers, rewards, coupons, and redemption rules; integrates with POS/ordering for earning and redemption events.
+
+    - FA: امتیاز، سطوح، پاداش/کوپن و قواعد خرج‌کردن؛ اتصال به POS/Ordering برای رویدادهای کسب/مصرف.
+
+- [ ] MI-0046 | Production Simple (تولید ساده)
+  - candidate_module_code: production.simple
+  - proposed_category: production
+  - priority: P2
+  - dependencies: [inventory.stock_advanced]
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - applicable_business_segments: [manufacturing, food_manufacturing, textile_apparel, printing_packaging, machining_workshop]
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Simple work orders and basic material consumption/outputs; focuses on straightforward assembly/manufacturing flows.
+
+    - FA: دستور تولید ساده و ثبت مصرف مواد/خروجی؛ مناسب جریان‌های تولید/مونتاژ ساده.
+
+- [ ] MI-0047 | Production Custom (تولید سفارشی/اختصاصی)
+  - candidate_module_code: production.custom
+  - proposed_category: production
+  - priority: P3
+  - dependencies: [production.simple]
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - applicable_business_segments: [printing_packaging, textile_apparel, machining_workshop, food_manufacturing]
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Make-to-order production with custom specs, job tracking, and tighter linkage to quotes/orders and job costing hooks.
+
+    - FA: تولید سفارشی بر اساس مشخصات سفارش، رهگیری کار و اتصال قوی‌تر به سفارش/پیش‌فاکتور و قلاب‌های هزینه‌یابی.
+
+- [ ] MI-0048 | Quality Checklists (چک‌لیست کیفیت با QR/بارکد)
+  - candidate_module_code: operations.quality_checklists
+  - proposed_category: operations
+  - priority: P2
+  - dependencies: [production.simple, service.crm]
+  - platform_compatibility: unknown
+  - target_persona: end_user
+  - core_dependency_risk: no
+  - applicable_business_segments: [manufacturing, field_service, construction_contracting, mep_services, security_safety_systems, logistics_warehousing]
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: QR/barcode-driven checklists for QA/QC and field inspections; supports evidence attachments and audit trail.
+
+    - FA: چک‌لیست‌های QC با QR/بارکد برای کنترل کیفیت و بازرسی میدانی؛ پشتیبانی از پیوست شواهد و ردپا.
+
+- [ ] MI-0049 | Maintenance / Preventive Maintenance (PM) (نت پیشگیرانه)
+  - candidate_module_code: operations.maintenance_pm
+  - proposed_category: operations
+  - priority: P2
+  - dependencies: [finance.asset_register, inventory.stock_simple]
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - applicable_business_segments: [manufacturing, construction_contracting, mep_services, property_management, security_safety_systems, equipment_rental, automotive_services]
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Preventive maintenance schedules, work orders, parts consumption, and service history per asset; supports reminders and SLA hooks.
+
+    - FA: زمان‌بندی PM، دستورکار، مصرف قطعات و تاریخچه سرویس برای هر دارایی؛ هشدارها و قلاب‌های SLA.
+
+- [ ] MI-0050 | AI Cashflow Risk Watch (هشدار ریسک نقدینگی)
+  - candidate_module_code: ai.cashflow_risk_watch
+  - proposed_category: ai-addons
+  - priority: P2
+  - dependencies: [finance.cashflow_liquidity]
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - applicable_business_segments: all
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: AI alerts for abnormal cashflow patterns, missed payments, and risk signals; explains drivers and recommended actions.
+
+    - FA: هشدارهای AI برای الگوهای غیرعادی نقدینگی، ریسک عدم پرداخت و سیگنال‌های خطر؛ همراه با توضیح علت و پیشنهاد اقدام.
+
+- [ ] MI-0051 | AI Ticket Triage (تریاژ هوشمند تیکت)
+  - candidate_module_code: ai.ticket_triage
+  - proposed_category: ai-addons
+  - priority: P2
+  - dependencies: [service.crm]
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - applicable_business_segments: [it_msp, field_service, medical_clinic, dental, beauty_wellness, government]
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Auto-classify tickets (topic/urgency/sentiment) and suggest responses; keeps human approval in the loop.
+
+    - FA: دسته‌بندی خودکار تیکت (موضوع/فوریت/احساسات) و پیشنهاد پاسخ؛ با الزام تایید انسانی.
+
+- [ ] MI-0052 | AI Workforce Scheduler (شیفت‌بندی نیمه‌خودکار)
+  - candidate_module_code: ai.workforce_scheduler
+  - proposed_category: ai-addons
+  - priority: P3
+  - dependencies: [people.time_attendance]
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - applicable_business_segments: [restaurant, hospitality, retail, medical_clinic, lab_imaging, courier_last_mile, events_exhibitions]
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: AI-assisted shift suggestions based on demand patterns, constraints, and staff availability; exports to attendance/payroll.
+
+    - FA: پیشنهاد شیفت با کمک AI بر اساس الگوی تقاضا، محدودیت‌ها و دسترسی پرسنل؛ خروجی برای حضور و غیاب/حقوق.
+
+- [ ] MI-0053 | AI Kitchen ETA (پیش‌بینی زمان آماده‌سازی)
+  - candidate_module_code: ai.kitchen_eta
+  - proposed_category: ai-addons
+  - priority: P3
+  - dependencies: [commerce.kds, commerce.ordering]
+  - platform_compatibility: unknown
+  - target_persona: end_user
+  - core_dependency_risk: no
+  - applicable_business_segments: [restaurant, catering, bakery_patisserie]
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Predict order preparation ETA and balance kitchen workload; updates customer-facing status if enabled.
+
+    - FA: پیش‌بینی ETA آماده‌سازی و بالانس بار کاری آشپزخانه؛ در صورت فعال بودن، بروزرسانی وضعیت مشتری.
+
+- [ ] MI-0054 | AI Inventory Optimizer (بهینه‌ساز هوشمند موجودی)
+  - candidate_module_code: ai.inventory_optimizer
+  - proposed_category: ai-addons
+  - priority: P3
+  - dependencies: [inventory.forecasting, inventory.procurement]
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - applicable_business_segments: [restaurant, catering, retail, distribution, food_manufacturing, greenhouse_hydroponics]
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Optimize reorder points and supplier choices using forecast, lead time, and stockout risk; produces explainable recommendations.
+
+    - FA: بهینه‌سازی نقطه سفارش و انتخاب تامین‌کننده بر اساس پیش‌بینی، زمان تامین و ریسک کمبود؛ پیشنهادهای قابل توضیح.
+
+- [ ] MI-0055 | AI Review Sentiment & Auto-Responder (تحلیل احساسات بازخورد + پاسخ‌یار)
+  - candidate_module_code: ai.review_sentiment_autoresponder
+  - proposed_category: ai-addons
+  - priority: P3
+  - dependencies: [commerce.feedback, commerce.audience]
+  - platform_compatibility: unknown
+  - target_persona: admin
+  - core_dependency_risk: no
+  - applicable_business_segments: all
+  - created_at: 2026-02-20
+  - notes:
+
+    - EN: Analyze feedback sentiment and draft response templates; supports routing high-risk complaints to CRM when enabled.
+
+    - FA: تحلیل احساسات بازخورد و تولید پیش‌نویس پاسخ؛ امکان ارجاع شکایات پرریسک به CRM در صورت فعال بودن.
